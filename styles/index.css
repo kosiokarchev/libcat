@@ -1,0 +1,21 @@
+.navContainer {
+    margin: auto;
+    max-width: 8in;
+}
+.navButton {
+    width: 40vw; height: 40vw;
+    margin: 5px;
+
+    background-image: url('/Images/icons/nav.png');
+    background-size: cover;
+    background-color: cornflowerblue;
+    border-radius: 10%;
+
+    cursor: hand;
+} .navButton:hover {
+      background-color: yellow;
+      box-shadow: 0 0 10px 0 black;
+}
+.navButton.search {background-position-x: -100%;}
+.navButton.return {background-position-x: -200%;}
+@media screen and (min-width: 4.5in){  .navButton {  width: 1.8in; height: 1.8in;  }  }

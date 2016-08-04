@@ -1,0 +1,42 @@
+.new {background-color: green;}
+.choice {background-color: lightgreen;}
+.sugg {background-color: lightyellow;}
+
+input[type=text] {
+    height: 21pt;
+    width: 100%;
+}
+.withButton {  display: flex;  }
+.withButton input {  width: calc(100% - 24pt);  }
+.withButton .button {
+    width: 21pt; height: 21pt;
+    background-image: url('/Images/icons/labels.png');
+    background-size: auto 100%;
+    background-position: -700% 0;
+    cursor: hand;
+}
+.withButton .button:hover {background-color: yellow;}
+select {  width: 100%;  }
+select[multiple] option {float: left; width: 50%;}
+
+#authSugg {
+    max-height: 70vh;
+    overflow: scroll;
+}
+
+@media screen and (min-width: 13cm) {
+    .choice {overflow: auto;}
+    .choice div {float: left; margin-right: 1.6em;}
+    .choice div:last-child {margin-right: 0;}
+    #authSugg {
+        display: flex;
+        flex-flow: column wrap;
+    }
+    .sugg div {
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        width: 46%;
+        margin-right: 4%;
+    }
+    select[multiple] {max-height: 3.2em;}
+    select[multiple] option {width: auto; padding-right: 1em;}
+}
