@@ -179,7 +179,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     background-color: transparent;
 
     transition-duration: 0.5s;
-    transition-property: background-color, width;
+    transition-property: background-color, width, max-width;
 }
 #searchField:hover {background-color: yellow;}
 #searchField:focus {

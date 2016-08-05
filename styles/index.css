@@ -16,6 +16,6 @@
       background-color: yellow;
       box-shadow: 0 0 10px 0 black;
 }
-.navButton.search {background-position-x: -100%;}
-.navButton.return {background-position-x: -200%;}
+.navButton.search {background-position: -100% 0;}
+.navButton.return {background-position: -200% 0;}
 @media screen and (min-width: 11cm){  .navButton {  width: 5cm; height: 5cm;  }  }
