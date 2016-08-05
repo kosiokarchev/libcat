@@ -50,15 +50,15 @@
     background-image: url("/Images/icons/labels.png");
     background-size: cover;
 }
-.labelyear {background-position-x: -100%;}
-.labellang {background-position-x: -200%;}
-.labelarrow {background-position-x: -300%;}
-.labelloc {background-position-x: -400%;}
-.labelisbn {background-position-x: -500%;}
-.labelcopies {background-position-x: -600%;}
-.labelcomment {background-position-x: -700%;}
-.labeltitle {background-position-x: -900%;}
-.labeldyn {background-position-x: -1000%; background-color: black;}
+.labelyear {background-position: -100% 0;}
+.labellang {background-position: -200% 0;}
+.labelarrow {background-position: -300% 0;}
+.labelloc {background-position: -400% 0;}
+.labelisbn {background-position: -500% 0;}
+.labelcopies {background-position: -600% 0;}
+.labelcomment {background-position: -700% 0;}
+.labeltitle {background-position: -900% 0;}
+.labeldyn {background-position: -1000% 0; background-color: black;}
 .additional  .data {
     font-size: 16pt;
     padding: 0.3em;

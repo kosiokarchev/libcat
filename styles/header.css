@@ -60,10 +60,10 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     background-size: cover;
     width: 50px;  height: 50px;
 }
-.bookminus {background-position-x: -100%;}
-.bookout   {background-position-x: -200%;}
-.bookin    {background-position-x: -300%;}
-.booktitle {background-position-x: -400%;}
+.bookminus {background-position: -100% 0;}
+.bookout   {background-position: -200% 0;}
+.bookin    {background-position: -300% 0;}
+.booktitle {background-position: -400% 0;}
 .actionContainer .bookIcon {
     margin-right: 0.1in;
     float: left;
@@ -84,8 +84,8 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 }
 .menuIcon.iconhome {background-color: cornflowerblue;}
 .menuIcon.iconhome:hover {background-color: yellow;}
-.menuIcon.iconsearch {background-position-x: -100%;}
-.menuIcon.iconcam    {background-position-x: -200%;}
+.menuIcon.iconsearch {background-position: -100% 0;}
+.menuIcon.iconcam    {background-position: -200% 0;}
 .menuIcon.iconcam:hover {background-color: yellow;}
 
 
