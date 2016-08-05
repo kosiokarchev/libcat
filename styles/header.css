@@ -67,7 +67,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 .actionContainer .bookIcon {
     margin-right: 0.1in;
     float: left;
-    cursor: hand;
+    cursor: pointer;
 }
 .actionContainer .bookin {margin-right: 0;}
 .bookplus:hover, .bookminus:hover {background-color: yellow;}
@@ -79,7 +79,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     border-bottom: 2px solid black;
     background-image: url("/Images/icons/menu.png");
     background-size: cover;
-    cursor: hand;
+    cursor: pointer;
     z-index: 2;
 }
 .menuIcon.iconhome {background-color: cornflowerblue;}
@@ -187,7 +187,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     padding-right: 21pt;
     background: rgba(255,255,255,1);
 }
-#searchDiv .mag_glass {  top: 10pt;  right: 21px;  cursor: hand;  }
+#searchDiv .mag_glass {  top: 10pt;  right: 21px;  cursor: pointer;  }
 #searchField:not(:focus) + div:not(:hover) {display: none;}
 
 #cameraButton {

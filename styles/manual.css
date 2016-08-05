@@ -13,7 +13,7 @@ input[type=text] {
     background-image: url('/Images/icons/labels.png');
     background-size: auto 100%;
     background-position: -800% 0;
-    cursor: hand;
+    cursor: pointer;
 }
 .withButton .button:hover {background-color: yellow;}
 select {  width: 100%;  }
