@@ -172,6 +172,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     padding-left: 16pt;
 
     outline: none;
+    border-color: black;
     border-style: dashed;
     border-radius: 15in;
     background-image: url('/Images/icons/header_bg.png');
