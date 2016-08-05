@@ -63,15 +63,14 @@ $num = $res->num_rows;
         <input name="bookIDs[]" hidden>
         <div id="locFormDiv" class="headerExtension flex" style="display: none;">
             <div id="choiceCount" class="bookIcon booktitle flex">0</div>
-            <div class="label arrow"></div>
+            <div class="labelIcon labelarrow"></div>
             <div class="divForm thumbnailContainer" onclick="this.firstElementChild.click();">
                 <button onclick="chooseLocation(this.nextElementSibling); return false;">Choose location</button>
                 <select id="locID" name="locID"><?php echo $locs; ?></select>
-                <div class="thumbnail flex"><div class="label loc question">?</div></div>
+                <div class="thumbnail flex"><div class="labelIcon labelloc question">?</div></div>
             </div>
-            <div class="divForm submit flex" onclick="this.firstChild.click(); return false;">
-                Go
-                <input type="submit">
+            <div class="divForm submit flex" onclick="this.firstElementChild.click();">
+                <input type="submit">Go
             </div>
         </div>
         <div id="contentDiv">

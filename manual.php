@@ -205,10 +205,10 @@ if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
             </div>
             <div class="row">
                 <div class="infoLabel">Автор</div>
-                <div  class="dataDiv withSearch">
+                <div  class="dataDiv withIcon">
                     <div class="searchField">
                         <input class="search" type="text" name="author" value="<?php echo $_GET['author'];?>">
-                        <div class="mag_glass">&#128269;</div>
+                        <div class="icon mag_glass">&#128269;</div>
                     </div>
                     <div class="dynamic">
                         <div id="authNew" class="new"></div>
@@ -232,8 +232,8 @@ if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
                 <div class="infoLabel">ISBN</div>
                 <div class="dataDiv withIcon">
                     <input type="text" size="14" maxlength="13" name="ISBN" value="<?php echo $_GET['ISBN'] ?>">
-                    <input type="checkbox" name="sureISBN" value="1" hidden>
-                    <div class="tick">&#10003;</div>
+                    <div class="icon"><input type="checkbox" name="sureISBN" value="1"></div>
+                    <div class="icon tick">&#10003;</div>
                 </div>
             </div>
             <div class="row">

@@ -37,12 +37,12 @@ h1 {
 }
 .dataDiv {
     text-align: center;
-    padding: 0.3em;
+    padding: 8px;
     background-color: white;
 }
 
-.row, .withIcon, .withSearch {position: relative;}
-.search, .withIcon input[type=text] {  padding-right: 21pt;  }
+.row, .withIcon {position: relative;}
+.withIcon input[type=text] {  padding-right: 21pt;  }
 .infoLabel {  font-size: 13pt;  }
 input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 
@@ -88,15 +88,16 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 .menuIcon.iconcam    {background-position-x: -200%;}
 .menuIcon.iconcam:hover {background-color: yellow;}
 
-.mag_glass, .withIcon input[type=checkbox], .tick {
+
+.icon {
     position: absolute;
-    height: 21pt;
-    right: 0.5em; top: 0.3em;
+    top: 8px; right: 8px;
+    font-size: 14pt;
+    width: 21pt; height: 21pt;
+    display: flex;  justify-content: center; align-items: center;
     z-index: 1;
 }
-.mag_glass, .tick {  font-size: 14pt;  }
-.withIcon input[type=checkbox]{  padding-top: 0; margin: 0 4pt 0 auto;  }
-.tick {
+.icon.tick {
     color: green;
     display: none;
 }
@@ -182,7 +183,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 }
 #searchField:hover {background-color: yellow;}
 #searchField:focus {
-    width: calc(100vw - 70px);
+    width: calc(100vw - 70px); max-width: calc(100% - 70px);
     padding-right: 21pt;
     background: rgba(255,255,255,1);
 }

@@ -1,14 +1,20 @@
-function DynamicList(input,act,genLabel,genValue,compLabel,labelText,suggDiv,choiceDiv,choiceName,newDiv,newName) {
+function DynamicList(pars) {
+    var input = pars["input"];
+    var action = pars["action"] ? pars["action"] : input.form.action;
     var theList = this;
     var newInput;
-    
+
+    this.on=false;
+    this.input = input;
+    this.suggDiv = pars["suggDiv"];
+
     this.change = function() {
         theList.dynamicInput();
-        if (newName) {
-            deleteIn(newDiv);
+        if (pars["new"]) {
+            deleteIn(pars["new"]["newDiv"]);
             var vals = input.value.split(";");
             for (var i=0; i<vals.length; i++) {
-                var val = vals[i].trim().replace(/,([^\s])/g, ', $1')
+                var val = vals[i].trim().replace(/,([^\s])/g, ', $1');
                 var sep = val.lastIndexOf(" ");
                 var comma = val.indexOf(",");
                 if (comma == val.length - 1) {
@@ -23,18 +29,18 @@ function DynamicList(input,act,genLabel,genValue,compLabel,labelText,suggDiv,cho
             }
         }
     };
-    input.onkeyup = this.change;
-    
+    input.onkeyup = function () {if (theList.on) theList.change();};
+
     this.dynamicInput = function() {
         if (input.nextElementSibling.classList.contains("mag_glass")) {
-            input.nextElementSibling.innerHTML = "&#8635;"
+            input.nextElementSibling.innerHTML = "&#8635;";
         }
-        var varString = "exec=1&act="+act+"&input="+input.value;
+        var varString = "exec=1&input="+input.value;
+        varString+= pars["act"] ? "&act="+pars["act"] : "";
 
         var http = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
-        http.open("POST",input.form.action,true);
+        http.open("POST",action,true);
         http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        http.send(varString);
         http.onreadystatechange = function() {
             if(http.readyState==4 && http.status==200) {
                 if (input.nextElementSibling.classList.contains("mag_glass")) {
@@ -44,75 +50,83 @@ function DynamicList(input,act,genLabel,genValue,compLabel,labelText,suggDiv,cho
                 catch (e) {alert(e); alert(http.responseText);}
             }
         };
+        http.send(varString);
 
         return false;
     };
-    
-    this.output = function(data) {
-        suggDiv.innerHTML = '';
-        for (var i=0; i < data.length; i++) {
-            var label = genLabel(data[i]);
-            var value = genValue(data[i]);
-            if (!this.includedInChoice(label)) {
-                var input = this.addSugg(value,label);
 
-                input.onclick = function() {
-                    var div,child;
-                    if (this.checked) {div = choiceDiv;}
-                    else {div = suggDiv;}
-                    child = div.firstChild;
-                    while (true) {
-                        if (child) {
-                            if ((this.checked && labelText(child.lastChild) > labelText(this.nextSibling)) ||
-                                (!this.checked && compLabel(child.lastChild,this.nextSibling)==1)) {
-                                div.insertBefore(this.parentNode, child); break;
-                            }
-                        } else {div.appendChild(this.parentNode); break;}
-                        child = child.nextSibling;
-                    }
-                };
+    this.output = function(data) {
+        pars["suggDiv"].innerHTML = '';
+        for (var i=0; i < data.length; i++) {
+            var label = pars["genLabel"](data[i]);
+            var value = (pars["genValue"] && pars["choice"]) ? pars["genValue"](data[i]) : false;
+            if (!(pars["choice"] && this.includedInChoice(label))) {
+                var input = this.addSugg(value,label);
+                if (input) {
+                    input.onclick = function() {
+                        var div,child;
+                        if (this.checked) {div = pars["choice"]["choiceDiv"];}
+                        else {div = pars["suggDiv"];}
+                        child = div.firstChild;
+                        if (!pars["compLabel"]) {
+                            if (child) {div.insertBefore(this.parentNode, child);}
+                            else {div.appendChild(this.parentNode);}
+                            return;
+                        }
+                        while (true) {
+                            if (child) {
+                                if ((this.checked && pars["labelText"](child.lastChild) > pars["labelText"](this.nextSibling)) ||
+                                    (!this.checked && pars["compLabel"](child.lastChild,this.nextSibling)==1)) {
+                                    div.insertBefore(this.parentNode, child); break;
+                                }
+                            } else {div.appendChild(this.parentNode); break;}
+                            child = child.nextSibling;
+                        }
+                    };
+                }
             }
-            if (newName) {var dupl=this.includedNew(labelText(label)); if (dupl) {newDiv.removeChild(dupl);}}
+            if (pars["new"]) {var dupl=this.includedNew(pars["labelText"](label)); if (dupl) {pars["new"]["newDiv"].removeChild(dupl);}}
         }
     };
-    
+
     this.addNew = function(val) {
         var inputDiv = document.createElement("div");
         var input = document.createElement("input");
         input.type = "checkbox";
-        input.name = newName+"[]";
+        input.name = pars["new"]["newName"]+"[]";
         input.value = val;
 
         inputDiv.appendChild(input);
         inputDiv.appendChild(document.createTextNode(val));
-        newDiv.insertBefore(inputDiv,newDiv.firstChild);
+        pars["new"]["newDiv"].insertBefore(inputDiv,pars["new"]["newDiv"].firstChild);
 
         return input;
     };
-    
+
     this.addSugg = function(value,label) {
         var inputDiv = document.createElement("div");
-        var input = document.createElement("input");
-        input.type = "checkbox";
-        input.name = choiceName+"[]";
-        input.value = value;
-        input.style.display = "none";
-
-        inputDiv.appendChild(input);
+        if (value!==false) {
+            var input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = pars["choice"]["choiceName"]+"[]";
+            input.value = value;
+            input.style.display = "none";
+            inputDiv.appendChild(input);
+            
+            inputDiv.onclick = function() {this.firstChild.click();};
+            inputDiv.style.cursor = "hand";
+        }
         inputDiv.appendChild(label);
-        suggDiv.appendChild(inputDiv);
-
-        inputDiv.onclick = function() {this.firstChild.click();};
-        inputDiv.style.cursor = "hand";
+        pars["suggDiv"].appendChild(inputDiv);
 
         return input;
     };
 
     this.includedInChoice = function(label) {
-        var child = choiceDiv.firstChild;
+        var child = pars["choice"]["choiceDiv"].firstChild;
         var incl = false;
         while (child) {
-            if (!compLabel(child.lastChild,label)) {incl = true; break;}
+            if (pars["compLabel"] && !pars["compLabel"](child.lastChild,label)) {incl = true; break;}
             child = child.nextSibling;
         }
         return incl;
@@ -120,13 +134,14 @@ function DynamicList(input,act,genLabel,genValue,compLabel,labelText,suggDiv,cho
     this.includedNew = function(text) {
         text = text.toLowerCase();
         var incl = false;
-        var child = newDiv.firstChild;
+        var child = pars["new"]["newDiv"].firstChild;
         while (child) {
             if (child.lastChild.data.toLowerCase() == text) {incl = child; break;}
             child = child.nextSibling;
         }
         return incl;
     };
+
 }
 
 function deleteIn(div) {

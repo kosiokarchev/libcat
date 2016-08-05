@@ -8,9 +8,7 @@ const cyrCyrThresh = 90;
 // General
 //   Shorthands
 function checkPostFor($keys) {foreach($keys as $key) {if (!isset($_POST[$key])) {return false;}} return true;}
-function nCopiesOf($n,$of) {
-	return $n.' cop'.($n>1 ? 'ies' : 'y').' of "'.$of.'"';
-}
+function nCopiesOf($n,$of) {return $n.' cop'.($n>1 ? 'ies' : 'y').' of "'.$of.'"';}
 
 //   HTTP
 function httpPost($url,$data=Null) {
@@ -338,16 +336,16 @@ function bookActions($book) {
 }
 function multipleBooks_info($book) {
 	$div = '<div class="info">';
-		$div.= '<div class="addrow" title="автор"><div class="label author"></div><div class="data">'.$book['author'].'</div></div>';
+		$div.= '<div class="addrow" title="автор"><div class="labelIcon labelauthor"></div><div class="data">' .$book['author'].'</div></div>';
 		$div.= $book['year'] ?
-				'<div class="addrow" title="година"><div class="label year"></div><div class="data">'.$book['year'].'</div></div>' : '';
-		$div.= '<div class="addrow" title="език"><div class="label lang"></div><div class="data">'.$book['langName'].'</div></div>';
-		$div.= '<div class="addrow" title="местоположение"><div class="label loc"></div><div class="data">'.$book['locName'].'</div></div>';
+				'<div class="addrow" title="година"><div class="labelIcon labelyear"></div><div class="data">' .$book['year'].'</div></div>' : '';
+		$div.= '<div class="addrow" title="език"><div class="labelIcon labellang"></div><div class="data">' .$book['langName'].'</div></div>';
+		$div.= '<div class="addrow" title="местоположение"><div class="labelIcon labelloc"></div><div class="data">' .$book['locName'].'</div></div>';
 		$div.= $book['ISBN'] ?
-				'<div class="addrow" title="ISBN"><div class="label isbn"></div><div class="data">'.$book['ISBN'].'</div></div>' : '';
-		$div.= '<div class="addrow" title="екземпляри"><div class="label copies"></div><div class="data">'.$book['count'].'</div></div>';
+				'<div class="addrow" title="ISBN"><div class="labelIcon labelisbn"></div><div class="data">' .$book['ISBN'].'</div></div>' : '';
+		$div.= '<div class="addrow" title="екземпляри"><div class="labelIcon labelcopies"></div><div class="data">' .$book['count'].'</div></div>';
 		$div.= $book['lendedComment'] ?
-				'<div class="addrow" title="коментар"><div class="label comment"></div><div class="data">'.$book['lendedComment'].'</div></div>' : '';
+				'<div class="addrow" title="коментар"><div class="labelIcon labelcomment"></div><div class="data">' .$book['lendedComment'].'</div></div>' : '';
 	$div.= '</div>';
 	return $div;
 }

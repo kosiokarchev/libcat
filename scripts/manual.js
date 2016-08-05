@@ -19,9 +19,7 @@ function initManual() {
         return false;
     };
 
-    checkISBN(form.elements["ISBN"]);
-    form.elements["ISBN"].onkeyup = function() {checkISBN(this)};
-    form.elements["sureISBN"].onchange = function() {checkISBN(form.elements["ISBN"])};
+    ISBNChecker(form.elements["ISBN"]);
 
     selectChange(form.elements["langID[]"],langInputDiv);
     form.elements["langID[]"].onchange = function() {selectChange(this,langInputDiv);};
@@ -44,8 +42,10 @@ function initManual() {
         else return -1;
     }
     function labelText(label) {return label.firstChild.innerHTML;}
-    authList = new DynamicList(form.elements["author"],"searchAuthor",genLabel,genValue,compLabel,labelText,authSugg,authChoice,"authorID",authNew,"authorNew");
+    authList = new DynamicList({"input":form.elements["author"], "act":"searchAuthor", "genLabel":genLabel, "genValue":genValue, "compLabel":compLabel, "labelText":labelText, "suggDiv":authSugg, "choice":{"choiceDiv":authChoice, "choiceName":"authorID"}, "new":{"newDiv":authNew, "newName":"authorNew"}});
+    // authList = new DynamicList(form.elements["author"],"searchAuthor",genLabel,genValue,compLabel,labelText,authSugg,authChoice,"authorID",authNew,"authorNew");
     authList.change();
+    authList.on = true;
 
     addSeriesButton.onclick = function() {
         this.firstChild.checked = !this.firstChild.checked;
@@ -116,25 +116,6 @@ function series(show) {
         } else {seriesRow.style.display = "block";}
     } else {seriesRow.style.display = "none";}
     return true;
-}
-
-function checkISBN(element) {
-    element.value = element.value.replace(/[^0-9](.)/,'$1').replace(/[^0-9Xx]$/,'');
-    if (!verifyISBN(element.value)) {
-        element.nextElementSibling.hidden = false;
-        element.nextElementSibling.nextElementSibling.style.display = 'none';
-        if (element.nextElementSibling.checked) {
-            element.style.backgroundColor = "lightgreen";
-            return true;
-        }
-        else {element.style.backgroundColor = "lightcoral"; return false;}
-    } else {
-        element.nextElementSibling.hidden = true;
-        element.nextElementSibling.checked = false;
-        element.style.backgroundColor = "lightgreen";
-        element.nextElementSibling.nextElementSibling.style.display = 'block';
-        return true;
-    }
 }
 
 function selectChange(select,input) {

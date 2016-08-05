@@ -73,6 +73,32 @@ function initCam() {
     }
 }
 
+function ISBNChecker(element) {
+    checkISBN(element);
+    element.nextElementSibling.onclick = function() {checkISBN(element);}
+    element.onkeyup = function() {checkISBN(this)};
+    element.onchange = function() {checkISBN(this)};
+}
+
+function checkISBN(element) {
+    element.value = element.value.replace(/[^0-9](.)/,'$1').replace(/[^0-9Xx]$/,'');
+    if (!verifyISBN(element.value)) {
+        element.nextElementSibling.hidden = false;
+        element.nextElementSibling.nextElementSibling.style.display = 'none';
+        if (element.nextElementSibling.firstElementChild.checked) {
+            element.style.backgroundColor = "lightgreen";
+            return true;
+        }
+        else {element.style.backgroundColor = "lightcoral"; return false;}
+    } else {
+        element.nextElementSibling.hidden = true;
+        element.nextElementSibling.firstElementChild.checked = false;
+        element.style.backgroundColor = "lightgreen";
+        element.nextElementSibling.nextElementSibling.style.display = 'block';
+        return true;
+    }
+}
+
 function checksumISBN10(ISBN) {
     var sum = 0;
     for (var i=0; i<9; i++) {

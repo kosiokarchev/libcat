@@ -3,7 +3,7 @@
     max-width: 8in;
 }
 .navButton {
-    width: 40vw; height: 40vw;
+    width: calc(50vw - 18px); height: calc(50vw - 18px);
     margin: 5px;
 
     background-image: url('/Images/icons/nav.png');
@@ -18,4 +18,4 @@
 }
 .navButton.search {background-position-x: -100%;}
 .navButton.return {background-position-x: -200%;}
-@media screen and (min-width: 4.5in){  .navButton {  width: 1.8in; height: 1.8in;  }  }
+@media screen and (min-width: 11cm){  .navButton {  width: 5cm; height: 5cm;  }  }

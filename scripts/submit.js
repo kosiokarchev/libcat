@@ -5,29 +5,36 @@ function syncGet(url) {
     return http.responseText;
 }
 
-function fSubmit(f) {
+function toVarString(form) {
     var varString = '';
-    for (i=0; i<f.elements.length; i++) {
-        var t=f.elements[i].type;
+    for (i=0; i<form.elements.length; i++) {
+        var t=form.elements[i].type;
 
         if (t=="submit") {continue;}
         if (t=="select-multiple") {
-            for (var j=0; j<f.elements[i].options.length; j++) {
-                if (f.elements[i].options[j].selected) {
+            for (var j=0; j<form.elements[i].options.length; j++) {
+                if (form.elements[i].options[j].selected) {
                     if(varString!='')  varString+='&';
-                    varString += f.elements[i].name+'='+encodeURIComponent(f.elements[i].options[j].value);
+                    varString += form.elements[i].name+'='+encodeURIComponent(form.elements[i].options[j].value);
                 }
             }
-        } else if (!(t=="radio" || t=="checkbox") || f.elements[i].checked) {
+        } else if (!(t=="radio" || t=="checkbox") || form.elements[i].checked) {
             if(varString!='')  varString+='&';
-            varString += f.elements[i].name+'='+encodeURIComponent(f.elements[i].value);
+            varString += form.elements[i].name+'='+encodeURIComponent(form.elements[i].value);
         }
     }
+
+    return varString;
+}
+
+function fSubmit(f,func) {
+    func = func ? func : respond;
+    var varString = toVarString(f);
     
     var http = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
     http.open("POST",f.action,true);
     http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    http.onreadystatechange = function() {respond(http);};
+    http.onreadystatechange = function() {func(http);};
     http.send(varString);
     return false;
 }

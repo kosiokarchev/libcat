@@ -56,7 +56,7 @@ function initPlace() {
         }
         else {
             var mess = document.createElement("DIV");
-            mess.className = "label loc question";
+            mess.className = "labelIcon labelloc question";
             mess.innerHTML = "?";
             this.nextElementSibling.appendChild(mess);
         }

@@ -1,6 +1,4 @@
 <?php
-error_reporting(-1);
-
 require('connect.php');
 require('functions.php');
 
@@ -85,6 +83,16 @@ function searchResults() {
 
 function error($text) {return '<div class="headerExtension flex error">'.$text.'</div>';}
 
+$postKeys = array('exec','input');
+if (checkPostFor($postKeys) and $_POST['exec']==1) {
+    if ($_POST['input'] == '') {
+        echo '{}';
+    } else {
+        echo(($q_result = authSearch($_POST['input'])) ? json_encode($q_result->fetch_all()) : '{}');
+    }
+    exit();
+}
+
 if (isset($_GET['ISBN']) and $_GET['ISBN']) {
     $ISBN = cleanISBN($_GET['ISBN']);
     $q_result = existsISBN($ISBN);
@@ -105,7 +113,7 @@ elseif (isset($_GET['search']) and $_GET['search']) {
 elseif (isset($_GET['lended'])) {
     $res = sendQuery('SELECT * FROM bookdata WHERE lended ORDER BY title');
     if ($res) {$books = '<div id="books">'.multipleBooks($res).'</div>';}
-    else {$error = error('Няма намерени резултати');}
+    else {$error = error('В момента няма отдадени книги.');}
 } elseif (isset($_GET['authorID']) and $authorID=intval($_GET['authorID'])) {
     $res = sendQuery('SELECT * FROM bookdata WHERE EXISTS (SELECT * FROM authorship WHERE authorID='.$authorID.' AND bookID=bookdata.bookID) ORDER BY title');
     if ($res) {$books = '<div id="books">'.multipleBooks($res).'</div>';}
@@ -130,6 +138,7 @@ elseif (isset($_GET['lended'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/multiple.css">
+        <link rel="stylesheet" href="styles/search.css">
     </head>
     <body>
         <?php require('snippets/header.php');

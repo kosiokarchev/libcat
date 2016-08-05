@@ -1,5 +1,4 @@
 .row {
-    position: relative;
     margin-bottom: 0.05in;
     background-color: white;
 }
@@ -30,10 +29,7 @@
     display: none;
 }
 
-.additional {
-    height: 0;
-    transition: height 1s;
-}
+.additional {  height: 0;  }
 .additional .info {
     padding: 0.1in;
     margin-bottom: 0.5in;
@@ -48,22 +44,25 @@
     justify-content: center;
 }
 .addrow:last-child {margin-right: 0;}
-.label {
+.labelIcon {
     height: 21pt;
     width: 21pt;
     background-image: url("/Images/icons/labels.png");
-    background-size: auto 100%;
+    background-size: cover;
 }
-.year {background-position-x: -100%;}
-.lang {background-position-x: -200%;}
-.arrow {background-position-x: -300%;}
-.loc {background-position-x: -400%;}
-.isbn {background-position-x: -500%;}
-.copies {background-position-x: -600%;}
-.comment {background-position-x: -700%;}
+.labelyear {background-position-x: -100%;}
+.labellang {background-position-x: -200%;}
+.labelarrow {background-position-x: -300%;}
+.labelloc {background-position-x: -400%;}
+.labelisbn {background-position-x: -500%;}
+.labelcopies {background-position-x: -600%;}
+.labelcomment {background-position-x: -700%;}
+.labeltitle {background-position-x: -900%;}
+.labeldyn {background-position-x: -1000%; background-color: black;}
 .additional  .data {
     font-size: 16pt;
     padding: 0.3em;
+    max-width: calc(100vw - 1.9em - 21pt - 16px - 0.2in);
 }
 
 .additional .actions {
@@ -75,7 +74,7 @@
 }
 
 
-#authors a {text-decoration: none; color: black;}
+.author a {text-decoration: none; color: black;}
 
 @media screen and (min-width: 13cm) {
     #authors .row {margin: 0 0 1em 1.6em;}

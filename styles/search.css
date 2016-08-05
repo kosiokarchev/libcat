@@ -1,0 +1,44 @@
+.searchContainer {
+    font-size: 16pt;
+    max-width: 6in;
+    padding: 12pt; margin: auto;
+    display: flex; flex-direction: column;
+}
+.searchrow {
+    height: 36pt;
+    position: relative;
+    padding-top: 6pt; padding-bottom: 6pt;
+    border-top: 1px dashed gray;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.searchrow:first-child {border-top: none;}
+.searchrow .labelIcon:not(.sync) {
+    position: absolute; left: 100%;
+    width: 0;
+    z-index: 2;
+    transition: left 0.5s;
+}
+.labelText {
+    text-align: right;
+    padding-right: 6pt;
+    width: 1.2in;
+}
+.searchrow .data {
+    width: calc(100% - 6pt - 1.2in);
+    z-index: 1;
+    transition: width 0.5s;
+}
+@media screen and (max-width: 13cm) {
+    .data:focus {width: 100%; padding-left: 27pt;}
+    .data:focus ~ .labelText {display: none;}
+    .data:focus ~ .labelIcon:not(.sync) {width: 21pt; left: 3pt;}
+}
+.icon {top: 9px; right: 2px;}
+.sync {cursor: hand; background-color: grey;}
+.sync:hover {background-color: yellow;}
+.sync input {display: none;}

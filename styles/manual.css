@@ -12,7 +12,7 @@ input[type=text] {
     width: 21pt; height: 21pt;
     background-image: url('/Images/icons/labels.png');
     background-size: auto 100%;
-    background-position: -700% 0;
+    background-position: -800% 0;
     cursor: hand;
 }
 .withButton .button:hover {background-color: yellow;}
