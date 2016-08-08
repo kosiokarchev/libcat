@@ -38,7 +38,7 @@
     .data:focus ~ .labelText {display: none;}
     .data:focus ~ .labelIcon:not(.sync) {width: 21pt; left: 3pt;}
 }
-.icon {top: 9px; right: 2px;}
+/*.icon {top: 9px; right: 2px;}*/
 .sync {cursor: pointer; background-color: grey;}
 .sync:hover {background-color: yellow;}
 .sync input {display: none;}

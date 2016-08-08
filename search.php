@@ -143,6 +143,7 @@ elseif (isset($_GET['lended'])) {
     <body>
         <?php require('snippets/header.php');
               echo isset($error) ? $error : ''; ?>
+        <noscript>Please enable Javascript.</noscript>
         <div id="contentDiv">
             <?php if(isset($books)) echo $books; else require('snippets/advancedSearch.php'); ?>
         </div>

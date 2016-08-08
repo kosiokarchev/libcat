@@ -42,7 +42,7 @@ h1 {
 }
 
 .row, .withIcon {position: relative;}
-.withIcon input[type=text] {  padding-right: 21pt;  }
+.withIcon input[type=text] {  padding-right: 24pt;  }
 .infoLabel {  font-size: 13pt;  }
 input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 
@@ -90,10 +90,9 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 
 
 .icon {
-    position: absolute;
-    top: 8px; right: 8px;
+    position: absolute; top: 0; right: 1px;
     font-size: 14pt;
-    width: 21pt; height: 21pt;
+    width: 21pt; height: 100%;
     display: flex;  justify-content: center; align-items: center;
     z-index: 1;
 }
@@ -188,7 +187,7 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     padding-right: 21pt;
     background: rgba(255,255,255,1);
 }
-#searchDiv .mag_glass {  top: 10pt;  right: 21px;  cursor: pointer;  }
+#searchDiv .mag_glass {  top: 8pt;  right: 21px;  height: 35px;  cursor: pointer;  }
 #searchField:not(:focus) + div:not(:hover) {display: none;}
 
 #cameraButton {

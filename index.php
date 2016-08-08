@@ -16,7 +16,7 @@
                 <a href="manual.php" class="navButton add" title="Ръчно добавяне"></a>
                 <a href="search.php" class="navButton search" title="Разширено търсене"></a>
                 <a href="search.php?lended" class="navButton return" title="Връщане на книги"></a>
-                <a onclick="document.getElementById('imgInput').click();" class="navButton cam" title="Връщане на книги"></a>
+                <a onclick="document.getElementById('imgInput').click();" class="navButton cam" title="Снимка на баркод"></a>
             </div>
         </div>
     </body>

@@ -33,7 +33,7 @@
 #locChoice td {  vertical-align: middle;  }
 #locdivContainter {  overflow: scroll;  }
 #locdivContainter>div {  margin: auto;  }
-.title {text-align: left;}
+.title {position: relative; width: 100%; max-width: 10in; text-align: left;}
 .title .checkContainer {  display: flex;  }
 .title .titleContainer {  padding-left: 1em; padding-right: 3em;  }
 .title .moveButton {
@@ -44,6 +44,9 @@
     background-position: -3.6em 0;
     cursor: pointer;
 }
+.title input {width: 100%;}
 .additional .info {margin-bottom: 0;}
 
 .choice .book .title {  background-color: lightgreen;  }
+
+.refineContainer {  z-index: 2;  }

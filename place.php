@@ -76,6 +76,12 @@ $num = $res->num_rows;
         <div id="contentDiv">
             <p><?php echo $num; ?> неподредени книги</p>
             <div id="bookChoice" class="choice"></div>
+            <div class="row title refineContainer">
+                <div class="withIcon">
+                    <input type="text" id="refine">
+                    <div class="icon mag_glass">&#128269;</div>
+                </div>
+            </div>
             <div id="bookSugg" class="sugg"><?php echo $books; ?></div>
         </div>
         <div id="locChoice">

@@ -62,6 +62,30 @@ function initPlace() {
         }
     };
     locFormDiv.style.display = "flex";
+
+    var refine = document.getElementById("refine");
+    refine.onkeyup = function () {
+        var books = bookSugg.childNodes;
+        if (this.value.length < 3) {
+            for (var i=0; i<books.length; i++) {books[i].style.display = "block";}
+        } else {
+            for (var i=0; i<books.length; i++) {
+                if (books[i].textContent.toLowerCase().indexOf(this.value.toLowerCase())==-1) {books[i].style.display = "none";}
+                else {books[i].style.display = "block";}
+            }
+        }
+    };
+    var refinePos = refine.parentNode.parentNode.getBoundingClientRect().top + window.scrollY;
+    function searchOnTop() {
+        var rect = refine.parentNode.parentNode.getBoundingClientRect();
+        if (window.scrollY > refinePos) {
+            refine.parentNode.parentNode.style.position = "fixed";
+            refine.parentNode.parentNode.style.top = "0";
+            refine.parentNode.parentNode.style.left = document.getElementsByTagName("body")[0].getBoundingClientRect().left+"px";
+        } else {refine.parentNode.parentNode.style.position = "initial";}
+    }
+    window.onscroll = searchOnTop;
+    searchOnTop();
 }
 
 function newExec() {

@@ -31,7 +31,7 @@ function loadDoc($url) {
 	if (@$doc->loadHTML($str)) {return $doc;}
 	else {throw new \DOMException('File could not be parsed: '.$url);}
 }
-function ajax_return($status=1,$msg='Success',$redir=null) {
+function ajax_return($status=1,$msg='',$redir=null) {
 	echo json_encode(array('status'=>$status,'msg'=>$msg,"redir"=>$redir));
 	exit();
 }
