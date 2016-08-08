@@ -78,7 +78,7 @@ $num = $res->num_rows;
             <div id="bookChoice" class="choice"></div>
             <div class="row title refineContainer">
                 <div class="withIcon">
-                    <input type="text" id="refine">
+                    <input type="text" onclick="this.select()" id="refine">
                     <div class="icon mag_glass">&#128269;</div>
                 </div>
             </div>
