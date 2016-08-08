@@ -44,7 +44,7 @@
     background-position: -3.6em 0;
     cursor: pointer;
 }
-.title input {width: 100%;}
+.title input[type=text] {width: 100%;}
 .additional .info {margin-bottom: 0;}
 
 .choice .book .title {  background-color: lightgreen;  }

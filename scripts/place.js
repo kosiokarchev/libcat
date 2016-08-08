@@ -75,10 +75,10 @@ function initPlace() {
             }
         }
     };
-    var refinePos = refine.parentNode.parentNode.getBoundingClientRect().top + window.scrollY;
     function searchOnTop() {
-        var rect = refine.parentNode.parentNode.getBoundingClientRect();
-        if (window.scrollY > refinePos) {
+        var refinePos = bookChoice.getBoundingClientRect();
+        refinePos = refinePos.top + refinePos.height;
+        if (refinePos < 0) {
             refine.parentNode.parentNode.style.position = "fixed";
             refine.parentNode.parentNode.style.top = "0";
             refine.parentNode.parentNode.style.left = document.getElementsByTagName("body")[0].getBoundingClientRect().left+"px";
