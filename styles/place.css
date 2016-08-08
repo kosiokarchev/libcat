@@ -8,14 +8,17 @@
 }
 .thumbnail, .thumbnail>div {width: 100%; height: 100%;}
 .submit {
-    width: 0.5in;  height: 0.5in;
     font-size: 21pt;
     font-weight: bold;
+    width: 0.5in;  height: 0.5in;
+    overflow: hidden;
+    margin-left: 12pt;
     border: 2px solid black;
     border-radius: 0.25in;
-    margin-left: 12pt;
     cursor: pointer;
 } .submit:hover {background-color: yellow;}
+#loadingImg {width: 100%; height: 100%; display: none;}
+#loadingImg img {width: 21pt;}
 .bookIcon.booktitle {
     font-size: 18pt;
     padding: 0 0.047in 0.086in 0;

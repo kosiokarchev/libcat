@@ -27,24 +27,27 @@ function toVarString(form) {
     return varString;
 }
 
-function fSubmit(f,func) {
+function fSubmit(f,func,onfail) {
     func = func ? func : respond;
     var varString = toVarString(f);
     
     var http = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
     http.open("POST",f.action,true);
     http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    http.onreadystatechange = function() {func(http);};
+    http.onreadystatechange = function() {func(http,onfail);};
     http.send(varString);
     return false;
 }
-function respond(http) {
+function respond(http,onfail) {
     if(http.readyState==4 && http.status==200) {
         try {
             var response = JSON.parse(http.responseText);
             if (response.redir==null) {
                 if (response.status) {alert("Success: " + response.msg); window.location.reload();}
-                else {alert("Failure: " + response.msg);}
+                else {
+                    if (onfail) {onfail();}
+                    alert("Failure: " + response.msg);
+                }
             } else if (response.status==1) {window.location.assign(response.redir);}
             else {window.location.replace(response.redir);}
         }

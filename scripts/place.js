@@ -210,3 +210,8 @@ function chooseLocation(output,doNotUpdate) {
     document.getElementById("locChoice").style.display = "block";
     document.getElementById("locChoice").scrollIntoView();
 }
+
+function locSubmit(f) {
+    document.getElementById("loadingImg").style.display = "flex";
+    fSubmit(f,false,function() {document.getElementById("loadingImg").style.display = "none";});
+}
