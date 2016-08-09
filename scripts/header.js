@@ -83,7 +83,7 @@ function ISBNChecker(element) {
 function checkISBN(element) {
     element.value = element.value.replace(/[^0-9](.)/,'$1').replace(/[^0-9Xx]$/,'');
     if (!verifyISBN(element.value)) {
-        element.nextElementSibling.hidden = false;
+        element.nextElementSibling.style.display = "flex";
         element.nextElementSibling.nextElementSibling.style.display = 'none';
         if (element.nextElementSibling.firstElementChild.checked) {
             element.style.backgroundColor = "lightgreen";
@@ -91,7 +91,7 @@ function checkISBN(element) {
         }
         else {element.style.backgroundColor = "lightcoral"; return false;}
     } else {
-        element.nextElementSibling.hidden = true;
+        element.nextElementSibling.style.display = "none";
         element.nextElementSibling.firstElementChild.checked = false;
         element.style.backgroundColor = "lightgreen";
         element.nextElementSibling.nextElementSibling.style.display = 'block';
