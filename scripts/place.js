@@ -74,6 +74,7 @@ function initPlace() {
                 else {books[i].style.display = "block";}
             }
         }
+        refine.parentNode.parentNode.scrollIntoView();
     };
     function searchOnTop() {
         var refinePos = bookChoice.getBoundingClientRect();
