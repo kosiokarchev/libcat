@@ -3,7 +3,6 @@
         <title>Каталог</title>
         <script type="text/javascript" src="scripts/header.js"></script>
         <script type="text/javascript" src="scripts/quagga.min.js"></script>
-        <script> window.onload = initHeader;</script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/header.css">

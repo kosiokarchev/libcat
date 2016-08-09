@@ -23,12 +23,6 @@ foreach ($res as $loc) {
     $locs.= '<option value="'.$loc['locID'].'">'.$loc['locName'].'</option>';
 }
 
-$res = sendQuery('SELECT * FROM locdivs');
-$locdivs = '';
-foreach ($res as $loc) {
-    $locdivs.= '<option value="'.$loc['locdivID'].'">'.$loc['locdivName'].'</option>';
-}
-
 $query = 'SELECT * FROM bookdata WHERE locID=1 ORDER BY author';
 $res = sendQuery($query);
 $books = multipleBooks($res,false);
@@ -41,14 +35,9 @@ $num = $res->num_rows;
         <script type="text/javascript" src="scripts/quagga.min.js"></script>
         <script type="text/javascript" src="scripts/submit.js"></script>
         <script type="text/javascript" src="scripts/multiple.js"></script>
+        <script type="text/javascript" src="scripts/locs.js"></script>
         <script type="text/javascript" src="scripts/place.js"></script>
-        <script>
-            if (window.addEventListener) {
-                window.addEventListener("load",initHeader,false);
-                window.addEventListener("load",function () {initMultiple("bookSugg");},false);
-                window.addEventListener("load",initPlace,false);
-            } else {window.onload = function () {initHeader(); initMultiple("bookSugg"); initPlace();}}
-        </script>
+        <script>window.addEventListener("load",function () {initMultiple("bookSugg");},false);</script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/header.css">
@@ -84,18 +73,8 @@ $num = $res->num_rows;
             </div>
             <div id="bookSugg" class="sugg"><?php echo $books; ?></div>
         </div>
-        <div id="locChoice">
-            <div class="flex">
-                <table>
-                    <tr>
-                        <td>Участък:</td><td><select id="locdivSelect"><?php echo $locdivs;?></select></td>
-                        <td rowspan="2"><div class="divForm submit flex" onclick="this.firstElementChild.click();">&#x2714;<button id="locCloseBut">Close</button></div></td>
-                    </tr>
-                    <tr><td>Рафт:</td><td><select id="choiceID"><?php echo $locs; ?></select></td></tr>
-                </table>
-            </div>
-            <div id="locdivContainter"></div>
-        </div>
+
+        <?php require('snippets/locChoice.php'); ?>
     </form>
     </body>
 </html>

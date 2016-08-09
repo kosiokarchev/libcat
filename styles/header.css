@@ -36,6 +36,10 @@ h1 {
     background-color: #e2e2e9;
 }
 .dataDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
     text-align: center;
     padding: 8px;
     background-color: white;
@@ -107,6 +111,29 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
     justify-content: center;
     align-items: center;
 }
+
+
+.moveButton {
+    display: inline-block;
+    height: 1.2em; width: 2.4em;
+    background-image: url("/Images/icons/labels.png");
+    background-size: auto 1.2em;
+    background-position: -3.6em 0;
+    cursor: pointer;
+}
+.moveButton * {display: none;}
+
+.divForm input, .divForm select, .divForm button {display: none;}
+.submit {
+    font-size: 21pt;
+    font-weight: bold;
+    width: 0.5in;  height: 0.5in;
+    overflow: hidden;
+    margin-left: 12pt;
+    border: 2px solid black;
+    border-radius: 0.25in;
+    cursor: pointer;
+} .submit:hover {background-color: yellow;}
 
 @media screen and (min-width: 13cm) {
     .infoLabel {

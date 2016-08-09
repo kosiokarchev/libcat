@@ -1,22 +1,11 @@
 #header {box-shadow: none;}
 #locFormDiv {  width: 100%; height: 1in;  }
 
-.divForm input, .divForm select, .divForm button {display: none;}
 .thumbnailContainer {
     width: 1in; height: 1in;
     cursor: pointer;
 }
 .thumbnail, .thumbnail>div {width: 100%; height: 100%;}
-.submit {
-    font-size: 21pt;
-    font-weight: bold;
-    width: 0.5in;  height: 0.5in;
-    overflow: hidden;
-    margin-left: 12pt;
-    border: 2px solid black;
-    border-radius: 0.25in;
-    cursor: pointer;
-} .submit:hover {background-color: yellow;}
 #loadingImg {width: 100%; height: 100%; display: none;}
 #loadingImg img {width: 21pt;}
 .bookIcon.booktitle {
@@ -24,32 +13,12 @@
     padding: 0 0.047in 0.086in 0;
 }
 
-
-#locChoice {
-    display: none;
-    position: relative;
-    width: 100vw;  height: 100vh;
-    max-width: 100%; max-height: 100%;
-    background-color: cornflowerblue;
-}
-#locChoice table {  font-size: 21pt;  }
-#locChoice td {  vertical-align: middle;  }
-#locdivContainter {  overflow: scroll;  }
-#locdivContainter>div {  margin: auto;  }
 .title {position: relative; width: 100%; max-width: 10in; text-align: left;}
 .title .checkContainer {  display: flex;  }
 .title .titleContainer {  padding-left: 1em; padding-right: 3em;  }
-.title .moveButton {
-    height: 1.2em; width: 2.4em;
-    position: absolute; top: 0.1in; right: 0.1in;
-    background-image: url("/Images/icons/labels.png");
-    background-size: auto 1.2em;
-    background-position: -3.6em 0;
-    cursor: pointer;
-}
+.title .moveButton {  position: absolute; top: 0.1in; right: 0.1in;  }
 .title input[type=text] {width: 100%;}
 .additional .info {margin-bottom: 0;}
 
 .choice .book .title {  background-color: lightgreen;  }
-
 .refineContainer {  z-index: 2;  }

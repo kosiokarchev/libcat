@@ -128,12 +128,7 @@ elseif (isset($_GET['lended'])) {
         <script type="text/javascript" src="scripts/multiple.js"></script>
         <script type="text/javascript" src="scripts/submit.js"></script>
         <script type="text/javascript" src="scripts/action.js"></script>
-        <script>
-            if (window.addEventListener) {
-                window.addEventListener("load",initHeader,false);
-                window.addEventListener("load",function () {initMultiple();},false);
-            } else {window.onload = function () {initHeader(); initMultiple();}}
-        </script>
+        <script>window.addEventListener("load",function () {initMultiple();},false);</script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/header.css">

@@ -178,12 +178,6 @@ if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
         <script type="text/javascript" src="scripts/manual.js"></script>
         <script type="text/javascript" src="scripts/dynamic.js"></script>
         <script type="text/javascript" src="scripts/submit.js"></script>
-        <script type="text/javascript">
-            if (window.addEventListener) {
-                window.addEventListener("load",initHeader,false);
-                window.addEventListener("load",initManual,false);
-            } else {window.onload = function () {initHeader(); initManual();}}
-        </script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/manual.css">

@@ -1,3 +1,5 @@
+window.addEventListener("load",initHeader,false);
+
 function initHeader() {
     var headerDiv = document.getElementById("header");
     var searchDiv = document.getElementById("searchDiv");
@@ -132,4 +134,9 @@ function fire(event,element) {
         evt.initEvent(event, false, true);
         element.dispatchEvent(evt);
     } else {element.fireEvent("on"+event);}
+}
+function newExec() {
+    var exec = document.createElement("INPUT");
+    exec.name = "exec"; exec.value = "1";
+    return exec;
 }

@@ -4,6 +4,7 @@ var authNew,authChoice,authSugg;
 var authList;
 var addSeriesButton;
 var seriesRow = null;
+window.addEventListener("load",initManual,false);
 
 function initManual() {
     form = document.getElementById("newForm");
