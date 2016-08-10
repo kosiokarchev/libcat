@@ -240,7 +240,7 @@ if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
                     <div class="moveButton" onclick="chooseLocation(this.previousElementSibling); return false;"></div>
                 </div>
             </div>
-            <div class="row infoLabel divForm submit flex" style="margin: auto;" onclick="this.firstElementChild.click();">
+            <div class="row divForm submit flex" style="margin: auto;" onclick="this.firstElementChild.click();">
                 <input type="submit"><div id="loadingImg" class="flex"><img src="/Images/icons/loading.gif"></div>Go
             </div>
         </table>
