@@ -164,7 +164,7 @@ foreach ($q_result as $loc) {
 if (!(isset($_GET['langName']) and $_GET['langName'])) {$_GET['langName']='';}
 if (!(isset($_GET['title']) and $_GET['title'])) {$_GET['title']='';}
 if (!(isset($_GET['author']) and $_GET['author'])) {$_GET['author']='неизвестен';}
-if (!(isset($_GET['year']) and $_GET['year'])) {$_GET['year']='';}
+if (!(isset($_GET['year']) and $_GET['year'])) {$_GET['year']='0';}
 if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
 
 ?>
