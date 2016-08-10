@@ -16,7 +16,7 @@ input[type=text] {
     cursor: pointer;
 }
 .withButton .button:hover {background-color: yellow;}
-select {  width: 100%;  }
+select[multiple] {  width: 100%;  }
 select[multiple] option {float: left; width: 50%;}
 
 #authSugg {

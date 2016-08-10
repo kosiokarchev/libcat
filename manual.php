@@ -178,6 +178,7 @@ if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
         <script type="text/javascript" src="scripts/manual.js"></script>
         <script type="text/javascript" src="scripts/dynamic.js"></script>
         <script type="text/javascript" src="scripts/submit.js"></script>
+        <script type="text/javascript" src="scripts/locs.js"></script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/manual.css">
@@ -234,13 +235,15 @@ if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
             </div>
             <div class="row">
                 <div class="infoLabel">Местоположение</div>
-                <div class="dataDiv">
+                <div class="dataDiv flex">
                     <select name="locID"><?php echo $locs;?></select>
+                    <div class="moveButton" onclick="chooseLocation(this.previousElementSibling); return false;"></div>
                 </div>
             </div>
             <div><div colspan="2"><input type="submit" value="добави"></div></div>
         </table>
         </div>
         </form>
+        <?php require('snippets/locChoice.php'); ?>
     </body>
 </html>
