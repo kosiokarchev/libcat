@@ -92,10 +92,16 @@ function checksumISBN13($ISBN) {
 	else {$ch=strval($ch);}
 	return $ch;
 }
-function ISBN10to13($ISBN) {
+function ISBNto13($ISBN) {
 	if (!($ISBN and verifyISBN($ISBN)) or strlen($ISBN)==13) {return $ISBN;}
 	$ISBN = '978'.substr($ISBN,0,-1);
 	$ISBN.= checksumISBN13($ISBN);
+	return $ISBN;
+}
+function ISBNto10($ISBN) {
+	if (!($ISBN and verifyISBN($ISBN)) or strlen($ISBN)==10) {return $ISBN;}
+	$ISBN = substr($ISBN,3,-1);
+	$ISBN.= checksumISBN10($ISBN);
 	return $ISBN;
 }
 function fixISBN($ISBN) {
@@ -148,7 +154,7 @@ function verifyISBN($ISBN) {
 // Database interaction
 //   Exists
 function existsISBN($ISBN) {
-	$where = verifyISBN($ISBN) ? '13="'.ISBN10to13($ISBN).'"' : '="'.$ISBN.'"';
+	$where = verifyISBN($ISBN) ? '13="'.ISBNto13($ISBN).'"' : '="'.$ISBN.'"';
 	return sendQuery('SELECT bookID FROM books WHERE ISBN'.$where);
 }
 function existsCobissID($cID) {return sendQuery('SELECT bookID FROM books WHERE service="cobiss" and permaID='.$cID);}
@@ -210,7 +216,7 @@ function authSearch($input) {
 function prepData($data) {
 	if (isset($data['ISBN'][9])) {$data['ISBN'][9]=strtoupper($data['ISBN'][9]);}
 
-	$data['ISBN13'] = ISBN10to13($data['ISBN']);
+	$data['ISBN13'] = ISBNto13($data['ISBN']);
 
 	$data['ISBN'] = $data['ISBN'] ? '"'.$data['ISBN'].'"' : 'NULL';
 	$data['ISBN13'] = $data['ISBN13'] ? '"'.$data['ISBN13'].'"' : 'NULL';
@@ -391,7 +397,7 @@ function singleBookTable($data) {
 	$table .= $data['permaID'] ? '&nbsp;<a href="'.\SERVICES_PERMALINK[$data['service']].$data['permaID'].'" target="blank"><img class="ext" src="/Images/icons/ext.png"></a>' : '';
 	$table .='</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Автор</div><div class="dataDiv">'.$data['author'].'</div></div>';
-	$table .= '<div class="row"><div class="infoLabel">Местоположение</div><div class="dataDiv">'.$data['locName'].'<div id="moveButton" class="moveButton"><input value="'.$data['bookID'].'"></div></div></div>';
+	$table .= '<div class="row"><div class="infoLabel">Местоположение</div><div class="dataDiv flex">'.$data['locName'].'<div id="moveButton" class="moveButton"><input value="'.$data['bookID'].'"></div></div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Година</div><div class="dataDiv">'.$data['year'].'</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Език</div><div class="dataDiv">'.$data['langName'].'</div></div>';
 	$table .= $data['ISBN'] ? '<div class="row"><div class="infoLabel">ISBN</div><div class="dataDiv">'.$data['ISBN'].'</div></div>' : '';
@@ -406,9 +412,9 @@ function getData($input,$toadd=false) {
 	if (isset($input['cID'])) {return \cobiss\getData(false,$input['cID'],$toadd);}
 	else {
 //		if ($toadd) {
-			($data = \inprint\getData($input['ISBN'],$toadd)) or
-			($data = \cobiss\getData($input['ISBN'],false,$toadd)) or
-			($data = \isbndb\getData($input['ISBN']));
+			($data = \inprint\getData($input['ISBN'],$toadd));
+//			($data = \cobiss\getData($input['ISBN'],false,$toadd)) or
+//			($data = \isbndb\getData($input['ISBN']));
 			return $data;
 //		} else {return \isbndb\getData($input['ISBN']);}
 	}
@@ -703,11 +709,9 @@ namespace inprint {
 	}
 
 	function getData($ISBN,$toadd=false) {
-		$ISBNs = dashISBN($ISBN);
 		$varString = '';
-		foreach ($ISBNs as $var) {
-			$varString.='ISBN:'.$var.':Or;';
-		}
+		foreach (dashISBN(ISBNto13($ISBN)) as $var) {$varString.='ISBN:'.$var.':Or;';}
+		foreach (dashISBN(ISBNto10($ISBN)) as $var) {$varString.='ISBN:'.$var.':Or;';}
 		$url = searchURL.urlencode($varString);
 		$doc = loadDoc($url);
 

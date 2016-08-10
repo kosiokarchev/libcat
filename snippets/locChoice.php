@@ -21,12 +21,11 @@ if (!isset($locdivs)) {
         display: none;
         position: relative;
         width: 100vw;  height: 100vh;
-        max-width: 100%; max-height: 100%;
         background-color: cornflowerblue;
     }
     #locChoice table {  font-size: 21pt;  }
     #locChoice td {  vertical-align: middle;  }
-    #locdivContainter {  overflow: scroll;  }
+    #locdivContainter {  overflow: scroll; background-color: cornflowerblue;  }
     #locdivContainter>div {  margin: auto;  }
 </style>
 
