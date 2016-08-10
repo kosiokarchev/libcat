@@ -402,7 +402,7 @@ function singleBookTable($data) {
 	$table .= '<div class="row"><div class="infoLabel">Език</div><div class="dataDiv">'.$data['langName'].'</div></div>';
 	$table .= $data['ISBN'] ? '<div class="row"><div class="infoLabel">ISBN</div><div class="dataDiv">'.$data['ISBN'].'</div></div>' : '';
 	$table .= '<div class="row"><div class="infoLabel">Екземпляри</div><div class="dataDiv">'.$count.'</div></div>';
-	$data['lendedComment'] and '<div class="row"><div class="infoLabel">Коментар</div><div class="dataDiv">'.$data['lendedComment'].'</div></div>';
+	$data['lendedComment'] and $table .= '<div class="row"><div class="infoLabel">Коментар</div><div class="dataDiv">'.$data['lendedComment'].'</div></div>';
 	return $table;
 }
 
