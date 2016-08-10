@@ -398,12 +398,11 @@ function singleBookTable($data) {
 	$table .='</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Автор</div><div class="dataDiv">'.$data['author'].'</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Местоположение</div><div class="dataDiv flex">'.$data['locName'].'<div id="moveButton" class="moveButton"><input value="'.$data['bookID'].'"></div></div></div>';
-	$table .= '<div class="row"><div class="infoLabel">Година</div><div class="dataDiv">'.$data['year'].'</div></div>';
+	$data['year'] and $table .= '<div class="row"><div class="infoLabel">Година</div><div class="dataDiv">'.$data['year'].'</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Език</div><div class="dataDiv">'.$data['langName'].'</div></div>';
 	$table .= $data['ISBN'] ? '<div class="row"><div class="infoLabel">ISBN</div><div class="dataDiv">'.$data['ISBN'].'</div></div>' : '';
 	$table .= '<div class="row"><div class="infoLabel">Екземпляри</div><div class="dataDiv">'.$count.'</div></div>';
-	$table .= ($data['lendedComment']) ?
-		'<div class="row"><div class="infoLabel">Коментар</div><div class="dataDiv">'.$data['lendedComment'].'</div></div>' : '';
+	$data['lendedComment'] and '<div class="row"><div class="infoLabel">Коментар</div><div class="dataDiv">'.$data['lendedComment'].'</div></div>';
 	return $table;
 }
 
