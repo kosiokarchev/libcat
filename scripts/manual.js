@@ -15,7 +15,7 @@ function initManual() {
     addSeriesButton = document.getElementById("addSeriesButton");
     
     form.onsubmit = function () {
-        if (checkISBN(this.elements["ISBN"])) {fSubmit(this);}
+        if (checkISBN(this.elements["ISBN"])) {loadSubmit(this);}
         else {alert('ISBN is invalid. Check the box next to it to allow it anyway.');}
         return false;
     };

@@ -72,8 +72,3 @@ function initPlace() {
     window.onscroll = searchOnTop;
     searchOnTop();
 }
-
-function locSubmit(f) {
-    document.getElementById("loadingImg").style.display = "flex";
-    fSubmit(f,false,function() {document.getElementById("loadingImg").style.display = "none";});
-}

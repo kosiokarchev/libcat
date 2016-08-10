@@ -6,8 +6,6 @@
     cursor: pointer;
 }
 .thumbnail, .thumbnail>div {width: 100%; height: 100%;}
-#loadingImg {width: 100%; height: 100%; display: none;}
-#loadingImg img {width: 21pt;}
 .bookIcon.booktitle {
     font-size: 18pt;
     padding: 0 0.047in 0.086in 0;

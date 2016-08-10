@@ -54,3 +54,9 @@ function respond(http,onfail) {
         catch (e) {alert(http.responseText);}
     }
 }
+
+function loadSubmit(f,img) {
+    img = img ? img : document.getElementById("loadingImg");
+    img.style.display = "flex";
+    fSubmit(f,false,function() {img.style.display = "none";});
+}

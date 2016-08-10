@@ -47,7 +47,7 @@ $num = $res->num_rows;
     <body>
         <?php require('snippets/header.php'); ?>
         <noscript>Please enable Javascript.</noscript>
-    <form id="locForm" method="post" action="place.php" onsubmit="locSubmit(this); return false;">
+    <form id="locForm" method="post" action="place.php" onsubmit="loadSubmit(this); return false;">
         <input name="exec" value="1" hidden>
         <input name="bookIDs[]" hidden>
         <div id="locFormDiv" class="headerExtension flex" style="display: none;">
@@ -73,7 +73,6 @@ $num = $res->num_rows;
             </div>
             <div id="bookSugg" class="sugg"><?php echo $books; ?></div>
         </div>
-
         <?php require('snippets/locChoice.php'); ?>
     </form>
     </body>
