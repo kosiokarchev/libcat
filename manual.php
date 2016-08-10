@@ -95,7 +95,7 @@ if (checkPostFor($postKeys) and $_POST['exec']==1) {
         $title = preg_replace('/\s+/',' ',trim($_POST['title']));
         if ($title=='') {ajax_return(0,'Моля, въведете заглавие!');}
 
-        if (!preg_match('/^[0-9]+$/',$_POST['year']) or $_POST['year']>date('Y')) {ajax_return(0,'Невалидна година "'.$_POST['year'].'"');}
+        if (!preg_match('/^[0-9]*$/',$_POST['year']) or $_POST['year']>date('Y')) {ajax_return(0,'Невалидна година "'.$_POST['year'].'"');}
 
         $langIDs = getIDsFrom($_POST['langID']);
         if (!$langIDs) {ajax_return(0,'Не сте избрали валидни езици.');}
@@ -164,7 +164,7 @@ foreach ($q_result as $loc) {
 if (!(isset($_GET['langName']) and $_GET['langName'])) {$_GET['langName']='';}
 if (!(isset($_GET['title']) and $_GET['title'])) {$_GET['title']='';}
 if (!(isset($_GET['author']) and $_GET['author'])) {$_GET['author']='неизвестен';}
-if (!(isset($_GET['year']) and $_GET['year'])) {$_GET['year']='0';}
+if (!(isset($_GET['year']) and $_GET['year'])) {$_GET['year']='';}
 if (!(isset($_GET['ISBN']) and $_GET['ISBN'])) {$_GET['ISBN']='';}
 
 ?>
