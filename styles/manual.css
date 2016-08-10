@@ -19,6 +19,8 @@ input[type=text] {
 select[multiple] {  width: 100%;  }
 select[multiple] option {float: left; width: 50%;}
 
+.submit {  background-color: cornflowerblue;  }
+
 #authSugg {
     max-height: 70vh;
     overflow: scroll;
