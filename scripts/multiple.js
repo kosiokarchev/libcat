@@ -69,6 +69,7 @@ function genBook(data,check,action) {
             titleContainer.style.height = "auto";
             additionalDiv.style.height = "auto";
             setCookie(bookDiv.id,true);
+            if (window.innerHeight - bookDiv.getBoundingClientRect().bottom < 0) {bookDiv.scrollIntoView(false);}
         }
     };
     return bookDiv;
