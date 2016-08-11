@@ -3,8 +3,10 @@ window.addEventListener("load",initPlace,false);
 function initPlace() {
     var locID = document.getElementById("locID");
     var choiceCount = document.getElementById("choiceCount");
-    var bookSugg = document.getElementById("bookSugg");
     var bookChoice = document.getElementById("bookChoice");
+    var refine = document.getElementById("refine");
+    var bookSugg = genBooks(true); bookSugg.className = "sugg";
+    refine.parentNode.parentNode.parentNode.appendChild(bookSugg);
 
     var button;
     var bookDivs = document.getElementsByClassName("book");
@@ -14,7 +16,6 @@ function initPlace() {
             if (this.checked) {bookChoice.appendChild(this.parentNode.parentNode.parentNode);}
             else {bookSugg.insertBefore(this.parentNode.parentNode.parentNode,bookSugg.firstChild)}
             choiceCount.innerHTML = bookChoice.childNodes.length;
-            event.stopPropagation();
         };
 
         button = document.createElement("DIV");
@@ -45,9 +46,7 @@ function initPlace() {
             this.nextElementSibling.appendChild(mess);
         }
     };
-    locFormDiv.style.display = "flex";
 
-    var refine = document.getElementById("refine");
     refine.onkeyup = function () {
         var books = bookSugg.childNodes;
         if (this.value.length < 3) {

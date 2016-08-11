@@ -96,7 +96,7 @@ function checkISBN(element) {
         element.nextElementSibling.style.display = "none";
         element.nextElementSibling.firstElementChild.checked = false;
         element.style.backgroundColor = "lightgreen";
-        element.nextElementSibling.nextElementSibling.style.display = 'block';
+        element.nextElementSibling.nextElementSibling.style.display = 'flex';
         return true;
     }
 }
@@ -135,8 +135,32 @@ function fire(event,element) {
         element.dispatchEvent(evt);
     } else {element.fireEvent("on"+event);}
 }
-function newExec() {
+function newExt() {
+    var img = document.createElement("IMG");
+    img.src = "/Images/icons/ext.png";
+    return img;
+}
+function newInput(name,value) {
+    name = name ? name : "exec";
+    value = value ? value : "1";
     var exec = document.createElement("INPUT");
-    exec.name = "exec"; exec.value = "1";
+    exec.name = name; exec.value = value; exec.hidden = true;
     return exec;
+}
+function divWithClass(c) {
+    var div = document.createElement("DIV");
+    div.className = c;
+    return div;
+}
+
+function setCookie(name,val) {
+    if (val) {document.cookie = name+"="+val;}
+    else {document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC"}
+}
+function getCookie(name) {
+    var cookies = document.cookie.split(";");
+    for (var i=0; i<cookies.length; i++) {
+        var index = cookies[i].indexOf(name+"=");
+        if (index >- 1) {return cookies[i].substr(index+name.length+1);}
+    }
 }

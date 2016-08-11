@@ -25,7 +25,6 @@ foreach ($res as $loc) {
 
 $query = 'SELECT * FROM bookdata WHERE locID=1 ORDER BY author';
 $res = sendQuery($query);
-$books = multipleBooks($res,false);
 $num = $res->num_rows;
 ?>
 <html>
@@ -37,7 +36,6 @@ $num = $res->num_rows;
         <script type="text/javascript" src="scripts/multiple.js"></script>
         <script type="text/javascript" src="scripts/locs.js"></script>
         <script type="text/javascript" src="scripts/place.js"></script>
-        <script>window.addEventListener("load",function () {initMultiple("bookSugg");},false);</script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/header.css">
@@ -45,12 +43,13 @@ $num = $res->num_rows;
         <link rel="stylesheet" href="styles/place.css">
     </head>
     <body>
-        <?php require('snippets/header.php'); ?>
         <noscript>Please enable Javascript.</noscript>
+        <div id="json_books" hidden><?php echo json_encode($res->fetch_all(),JSON_HEX_AMP); ?></div>
+        <?php require('snippets/header.php'); ?>
     <form id="locForm" method="post" action="place.php" onsubmit="loadSubmit(this); return false;">
         <input name="exec" value="1" hidden>
         <input name="bookIDs[]" hidden>
-        <div id="locFormDiv" class="headerExtension flex" style="display: none;">
+        <div id="locFormDiv" class="headerExtension flex">
             <div id="choiceCount" class="bookIcon booktitle flex">0</div>
             <div class="labelIcon labelarrow"></div>
             <div class="divForm thumbnailContainer" onclick="this.firstElementChild.click();">
@@ -71,7 +70,6 @@ $num = $res->num_rows;
                     <div class="icon mag_glass">&#128269;</div>
                 </div>
             </div>
-            <div id="bookSugg" class="sugg"><?php echo $books; ?></div>
         </div>
         <?php require('snippets/locChoice.php'); ?>
     </form>

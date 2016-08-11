@@ -14,7 +14,7 @@ function moveOne(ID) {
     moveForm.method = "post";
     moveForm.action = "place.php";
 
-    moveForm.appendChild(newExec());
+    moveForm.appendChild(newInput());
 
     var IDinput = document.createElement("INPUT");
     IDinput.name = "bookIDs[]";

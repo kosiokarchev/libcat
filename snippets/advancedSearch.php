@@ -1,7 +1,8 @@
+<script type="text/javascript" src="/scripts/submit.js"></script>
 <script type="text/javascript" src="/scripts/dynamic.js"></script>
 <script type="text/javascript" src="/scripts/search.js"></script>
-<form>
-    <input name="exec" value="1" hidden>
+<div id="contentDiv"><form action="search.php" method="get"">
+<!--    <input name="exec" value="1" hidden>-->
     <div class="searchContainer row">
 <!--        <h1>Разширено търсене</h1>-->
         <div class="searchrow" title="Заглавие">
@@ -29,4 +30,4 @@
         </div>
         <input type="submit">
     </div>
-</form>
+</form></div>

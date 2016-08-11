@@ -197,19 +197,32 @@ function buildWhere($words,$fields,$min=2) {
 	}
 	return $where;
 }
-function authSearch($input) {
-	$input = preg_replace('/\s+/',' ',str_replace([',',';'],' ',str_replace('\\','',trim(htmlspecialchars($input)))));
-	if (strlen(utf8_decode($input))<3) {return false;}
+function authSearch($input,$min=3) {
+	if (gettype($input)=='string') {
+		$input = preg_replace('/\s+/', ' ', str_replace([',', ';'], ' ', str_replace('\\', '', trim(htmlspecialchars($input)))));
+		if (strlen(utf8_decode($input)) < $min) {return false;}
+		$input = explode(' ', $input);
+	}
 
 	$fields = array('authFirst','authLast','authFirstLat','authLastLat');
-	$words = explode(' ',$input);
-	$weight1 = substr(searchWeight($words,array('authFirst','authLast')),0,-10);
-	$weight2 = substr(searchWeight($words,array('authFirstLat','authLastLat')),0,-10);
+	$weight1 = substr(searchWeight($input,array('authFirst','authLast')),0,-10);
+	$weight2 = substr(searchWeight($input,array('authFirstLat','authLastLat')),0,-10);
 
-	$where = buildWhere($words,$fields,2);
+	$where = buildWhere($input,$fields,2);
 	$query = 'SELECT authorID,authorString, '.$weight1.' + '.$weight2.' as weight FROM authors_ws WHERE '.$where.' ORDER BY weight DESC';
 	$q_result = sendQuery($query);
 	return $q_result;
+}
+function search($words,$table,$fields,$ret=false) {
+	if ($table=='authors') {
+		$weight1 = substr(searchWeight($words,[$fields[0],$fields[1]]),0,-10);
+		$weight2 = substr(searchWeight($words,[$fields[2],$fields[3]]),0,-10);
+		$weight = $weight1.' + '.$weight2.' AS weight';
+	}
+	else {$weight = searchWeight($words,$fields);}
+	$where = buildWhere($words,$fields);
+	$query = 'SELECT '.($ret ? $ret : '*').','.$weight.' FROM '.$table.' WHERE '.$where.' ORDER BY weight DESC';
+	return sendQuery($query);
 }
 
 //   Add
@@ -297,6 +310,7 @@ function dealCobissID($cID) {
 
 
 // Output
+function error($text) {return '<div class="headerExtension flex error">'.$text.'</div>';}
 function resultSetTable($q_result) {
 	$res = '<table border=1>';
 	$res.= '<tr>';
@@ -325,11 +339,11 @@ function bookActions($book,$class='') {
 			$div.= '<input name="count" hidden>';
 			$div.= '<input name="msg" hidden>';
 			$div.= '<input name="ID" value="' . $book['bookID'] . '" hidden>';
-			$div.= '<button value="add" onclick="setCountVal(this); return false;">Добави екземпляр</button>';
-			$div.= '<button value="rem" onclick="setCountVal(this,'.($book['count']-$book['lended']).'); return false;">Премахни екземпляр</button>';
-			$div.= '<button value="lend" onclick="setCountVal(this,'.($book['count']-$book['lended']).(($book['lendedComment']) ? ',\''.$book['lendedComment'].'\'' : '').'); return false;">Отдай екземпляр</button>';
+			$div.= '<button value="add" onclick="setCountVal(this.form,this.value); return false;">Добави екземпляр</button>';
+			$div.= '<button value="rem" onclick="setCountVal(this.form,this.value,'.($book['count']-$book['lended']).'); return false;">Премахни екземпляр</button>';
+			$div.= '<button value="lend" onclick="setCountVal(this.form,this.value,'.($book['count']-$book['lended']).(($book['lendedComment']) ? ',\''.$book['lendedComment'].'\'' : '').'); return false;">Отдай екземпляр</button>';
 			$div.= ($book['lended']>0) ?
-				'<button value="ret" onclick="setCountVal(this,'.$book['lended'].(($book['lendedComment']) ? ',\''.$book['lendedComment'].'\'' : '').'); return false;">Върни екземпляр</button>' : '';
+				'<button value="ret" onclick="setCountVal(this.form,this.value,'.$book['lended'].(($book['lendedComment']) ? ',\''.$book['lendedComment'].'\'' : '').'); return false;">Върни екземпляр</button>' : '';
 		$div.= '</form>';
 		$div.= '<div class="actionContainer">';
 			$div.= '<div class="bookIcon bookplus" title="Добави екземпляр" onclick="this.parentNode.parentNode.firstChild.children[5].click();"></div>';
@@ -343,15 +357,15 @@ function bookActions($book,$class='') {
 function multipleBooks_info($book) {
 	$div = '<div class="info">';
 		$div.= '<div class="addrow" title="автор"><div class="labelIcon labelauthor"></div><div class="data">' .$book['author'].'</div></div>';
-		$div.= $book['year'] ?
-				'<div class="addrow" title="година"><div class="labelIcon labelyear"></div><div class="data">' .$book['year'].'</div></div>' : '';
+	$book['year'] and
+		$div.='<div class="addrow" title="година"><div class="labelIcon labelyear"></div><div class="data">' .$book['year'].'</div></div>';
 		$div.= '<div class="addrow" title="език"><div class="labelIcon labellang"></div><div class="data">' .$book['langName'].'</div></div>';
 		$div.= '<div class="addrow" title="местоположение"><div class="labelIcon labelloc"></div><div class="data">' .$book['locName'].'</div></div>';
-		$div.= $book['ISBN'] ?
-				'<div class="addrow" title="ISBN"><div class="labelIcon labelisbn"></div><div class="data">' .$book['ISBN'].'</div></div>' : '';
+	$book['ISBN'] and
+		$div.='<div class="addrow" title="ISBN"><div class="labelIcon labelisbn"></div><div class="data">' .$book['ISBN'].'</div></div>';
 		$div.= '<div class="addrow" title="екземпляри"><div class="labelIcon labelcopies"></div><div class="data">' .$book['count'].'</div></div>';
-		$div.= $book['lendedComment'] ?
-				'<div class="addrow" title="коментар"><div class="labelIcon labelcomment"></div><div class="data">' .$book['lendedComment'].'</div></div>' : '';
+	$book['lendedComment'] and
+		$div.='<div class="addrow" title="коментар"><div class="labelIcon labelcomment"></div><div class="data">' .$book['lendedComment'].'</div></div>';
 	$div.= '</div>';
 	return $div;
 }

@@ -25,14 +25,12 @@
     position: absolute;
     left: 4pt;
     height: calc(100% - 0.2in);
-    align-items: center;
-    display: none;
 }
 
 .additional {  height: 0;  }
 .additional .info {
     padding: 0.1in;
-    margin-bottom: 0.5in;
+    /*margin-bottom: 0.5in;*/
     overflow: auto;
     border-top: 1px solid black;
 }
@@ -77,9 +75,9 @@
 .author a {text-decoration: none; color: black;}
 
 @media screen and (min-width: 13cm) {
-    #authors .row {margin: 0 0 1em 1.6em;}
-    #authors .row:last-child {margin-right: 0;}
-    #authors {
+    .floating .row {margin: 0 0 1em 1.6em;}
+    .floating .row:last-child {margin-right: 0;}
+    .floating {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;

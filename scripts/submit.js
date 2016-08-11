@@ -29,13 +29,15 @@ function toVarString(form) {
 
 function fSubmit(f,func,onfail) {
     func = func ? func : respond;
-    var varString = toVarString(f);
-    
+
     var http = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
     http.open("POST",f.action,true);
-    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     http.onreadystatechange = function() {func(http,onfail);};
-    http.send(varString);
+    if (FormData) {http.send(new FormData(f));}
+    else {
+        http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        http.send(toVarString(f));
+    }
     return false;
 }
 function respond(http,onfail) {
