@@ -17,7 +17,13 @@ if (checkPostFor($postKeys) and $_POST['exec']==1) {
             if ($data) {displayNewBook($data);}
             else {$error = error('Грешка 404: ISBN '.$_GET['ISBN'].' не бе намерен в никой от източниците.<br><a href="manual.php?ISBN='.$_GET['ISBN'].'">Ръчно добавяне.</a>');}
         }
-    } else if (isset($_GET['author']) and $_GET['author']) {
+    } elseif (isset($_GET['title']) and $_GET['title']) {
+        $_GET['title'] = preg_replace('/\s+/',' ',trim($_GET['title']));
+        $_GET['title'] = htmlentities($_GET['title']);
+        $words = explode(' ',$_GET['title']);
+
+        if ($res=search($words,'bookdata','title')) {$books = $res->fetch_all();}
+    } elseif (isset($_GET['author']) and $_GET['author']) {
         if ($res = authSearch($_GET['author'], 0)) {$authors = $res->fetch_all();}
     } else {
         if (isset($_GET['search']) and $_GET['search']) {

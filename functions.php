@@ -310,6 +310,46 @@ function dealCobissID($cID) {
 
 
 // Output
+function displayNewBook($data) {
+	$where = '0 ';
+	$langs = explode(',',$data['lang']);
+	foreach ($langs as $lang) {
+		$lang = trim($lang);
+		$where .= 'OR langName="'.$lang.'" ';
+	}
+	$query = 'SELECT langID,langName FROM langs WHERE '.substr($where,5);
+	$langIDs = '';
+	if ($q_result = sendQuery($query)) {
+		foreach ($q_result as $row) {
+			$langIDs.='&langID[]='.$row['langID'];
+			$keys = array_keys($langs,$row['langName']);
+			foreach($keys as $i) {unset($langs[$i]);}
+		}
+	}
+	$langName = '';
+	if ($langs) {
+		$langIDs.='&langID[]=0';
+		foreach ($langs as $lang) {
+			$langName.=$lang.', ';
+		}
+	}
+	$langName = substr($langName,0,-2);
+
+	$varString = '';
+	$varString.= 'title='.urlencode($data['title']);
+	$varString.='&author='.urlencode($data['authorString']);
+	$varString.='&year='.urlencode($data['year']);
+	$varString.='&ISBN='.urlencode($data['ISBN']);
+	$varString.=$langIDs;
+	$varString.='&langName='.$langName;
+
+	if (isset($data['service'])) {
+		$varString.='&service='.urlencode($data['service']);
+		$varString.='&permaID='.urlencode($data['permaID']);
+	}
+
+	header('Location: manual.php?'.$varString);
+}
 function error($text) {return '<div class="headerExtension flex error">'.$text.'</div>';}
 function resultSetTable($q_result) {
 	$res = '<table border=1>';
