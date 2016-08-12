@@ -31,7 +31,7 @@ function initManual() {
         text.appendChild(document.createTextNode(data[1]));
         var weight = document.createElement("SPAN");
         weight.style.display = "none";
-        weight.innerHTML = data[3];
+        weight.innerHTML = data[2];
         var span = document.createElement("SPAN");
         span.appendChild(text); span.appendChild(weight);
         return span;
@@ -39,7 +39,7 @@ function initManual() {
     function genValue(data) {return data[0];}
     function compLabel(label1,label2) {
         if (label1.lastChild.innerHTML < label2.lastChild.innerHTML) return 1;
-        else if (label1.lastChild.innerHTML==label2.lastChild.innerHTML) return 0;
+        else if (label1.firstChild.innerHTML==label2.firstChild.innerHTML) return 0;
         else return -1;
     }
     function labelText(label) {return label.firstChild.innerHTML;}
