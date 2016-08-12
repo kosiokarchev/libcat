@@ -23,7 +23,10 @@ function genBook(data,check,action) {
     var bookDiv = divWithClass("book row"); bookDiv.id = "book_"+bookID;
         var titleDiv = divWithClass("title"); titleDiv.setAttribute("title",title);
             var titleContainer = divWithClass("titleContainer");
-            titleContainer.innerHTML = title;
+                titleContainer.innerHTML = title;
+                titleContainer.appendChild(document.createElement("BR"));
+                var link = document.createElement("A"); link.href = "book.php?ID="+bookID; link.innerHTML = "виж още";
+                titleContainer.appendChild(link);
         if (check) {
             var checkContainer = divWithClass("checkContainer flex");
                 var checkbox = document.createElement("INPUT");
