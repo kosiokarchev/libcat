@@ -25,7 +25,9 @@ function genBook(data,check,action) {
             var titleContainer = divWithClass("titleContainer");
                 titleContainer.innerHTML = title;
                 titleContainer.appendChild(document.createElement("BR"));
-                var link = document.createElement("A"); link.href = "book.php?ID="+bookID; link.innerHTML = "виж още";
+                var link = document.createElement("A"); link.href = "book.php?ID="+bookID; link.target = "_blank";
+                    link.innerHTML = "виж още";
+                link.onclick = function(event) {event.stopPropagation(); return true;};
                 titleContainer.appendChild(link);
         if (check) {
             var checkContainer = divWithClass("checkContainer flex");
