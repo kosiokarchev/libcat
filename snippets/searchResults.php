@@ -16,7 +16,7 @@
         }
     },false);
 </script>
-<div id="json_books" hidden><?php if (isset($books)) echo json_encode($books); ?></div>
-<div id="json_authors" hidden><?php if (isset($authors)) echo json_encode($authors); ?></div>
+<div id="json_books" hidden><?php if (isset($books)) echo htmlentities(json_encode($books)); ?></div>
+<div id="json_authors" hidden><?php if (isset($authors)) echo htmlentities(json_encode($authors)); ?></div>
 <div id="contentDiv">
 </div>
