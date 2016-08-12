@@ -1,6 +1,4 @@
-window.addEventListener("load",initHeader,false);
-
-function initHeader() {
+window.addEventListener("load", function () {
     var headerDiv = document.getElementById("header");
     var searchDiv = document.getElementById("searchDiv");
     var menuDiv = document.getElementById("menuDiv");
@@ -26,7 +24,7 @@ function initHeader() {
     }
 
     initCam();
-}
+}, false);
 
 function initCam() {
     var cameraButton = document.getElementById("cameraButton");

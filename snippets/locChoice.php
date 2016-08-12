@@ -22,11 +22,11 @@ if (!isset($locdivs)) {
         position: relative;
         width: 100vw;  height: 100vh;
         max-width: 100%; max-height: 100%;
-        background-color: cornflowerblue;
+        margin-top: 16pt;
     }
     #locChoice table {  font-size: 21pt;  }
     #locChoice td {  vertical-align: middle;  }
-    #locdivContainter {  overflow: scroll; background-color: cornflowerblue;  }
+    #locdivContainter {  overflow: scroll;  }
     #locdivContainter>div {  margin: auto;  }
 </style>
 
@@ -45,6 +45,7 @@ if (!isset($locdivs)) {
             }
             locdiv = buildPlace(this.value,true);
             locdiv.style.fontSize = "3px";
+            locdiv.style.backgroundColor = "cornflowerblue";
             locdiv.onclick = function(e) {
                 if (e.target.firstChild.checked) {choiceID.value = e.target.firstChild.value;}
                 fire("change",choiceID);

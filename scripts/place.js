@@ -1,6 +1,4 @@
-window.addEventListener("load",initPlace,false);
-
-function initPlace() {
+window.addEventListener("load", function () {
     var locID = document.getElementById("locID");
     var choiceCount = document.getElementById("choiceCount");
     var bookChoice = document.getElementById("bookChoice");
@@ -36,7 +34,6 @@ function initPlace() {
             var height = parseInt(thumbnail.style.height.split("em")[0]);
             var dim = height>width ? height : width;
             thumbnail.style.fontSize = (23/(24*dim)) + "in";
-            // thumbnail.style.border = "none";
             this.nextElementSibling.appendChild(thumbnail,0.5);
         }
         else {
@@ -70,4 +67,4 @@ function initPlace() {
     }
     window.onscroll = searchOnTop;
     searchOnTop();
-}
+}, false);

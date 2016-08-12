@@ -121,14 +121,13 @@ input,select,.dataDiv,.new,.choice,.sugg {font-size: 16pt;}
 
 .divForm input, .divForm select, .divForm button {display: none;}
 .submit {
-    font-size: 21pt;
-    font-weight: bold;
+    font-size: 21pt;  font-weight: bold;
     width: 0.5in;  height: 0.5in;
     overflow: hidden;
     margin-left: 12pt;
-    border: 2px solid black;
-    border-radius: 0.25in;
+    border: 2px solid black;  border-radius: 0.25in;
     cursor: pointer;
+    background-color: cornflowerblue;
 } .submit:hover {background-color: yellow;}
 #loadingImg {width: 100%; height: 100%; display: none;}
 #loadingImg img {width: 21pt;}

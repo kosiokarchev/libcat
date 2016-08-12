@@ -63,6 +63,7 @@ if (checkPostFor($postKeys) and $_POST['exec']==1) {
     <script type="text/javascript" src="scripts/submit.js"></script>
     <script type="text/javascript" src="scripts/action.js"></script>
     <script type="text/javascript" src="scripts/locs.js"></script>
+    <script type="text/javascript" src="scripts/book.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles/header.css">

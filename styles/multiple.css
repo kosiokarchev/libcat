@@ -1,4 +1,6 @@
 .row {
+    /*overflow: visible;*/
+    position: static;
     margin-bottom: 0.05in;
     background-color: white;
 }
@@ -27,14 +29,13 @@
     height: calc(100% - 0.2in);
 }
 
-.additional {  height: 0;  }
+.additional {  height: 0; overflow: hidden;  }
 .additional .info {
     padding: 0.1in;
-    /*margin-bottom: 0.5in;*/
     overflow: auto;
     border-top: 1px solid black;
 }
-.additional .info div {  float: left;  }
+.addrow, .infoLabel, .data {  float: left;  }
 .addrow {
     margin-right: 1.6em;
     display: flex;
@@ -42,6 +43,8 @@
     justify-content: center;
 }
 .addrow:last-child {margin-right: 0;}
+.addrow a {color: black;}
+.addrow a:hover + .thumb {display: block;}
 .labelIcon {
     height: 21pt;
     width: 21pt;
@@ -63,12 +66,19 @@
     max-width: calc(100vw - 1.9em - 21pt - 16px - 0.2in);
 }
 
-.additional .actions {
-    position: absolute;
-    bottom: 0;
+.additional .actions {  border: none;  box-shadow: none;  }
 
-    border: none;
-    box-shadow: none;
+.additional .data .thumb {
+    display: none;
+    position: absolute;
+    z-index: 2;
+}
+.thumbCont {
+    position: relative; top: 8px;
+    padding: 8px;
+    background-color: #e2e2e9;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px 0.5px black;
 }
 
 

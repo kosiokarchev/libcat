@@ -351,6 +351,7 @@ function displayNewBook($data) {
 	header('Location: manual.php?'.$varString);
 }
 function error($text) {return '<div class="headerExtension flex error">'.$text.'</div>';}
+
 function resultSetTable($q_result) {
 	$res = '<table border=1>';
 	$res.= '<tr>';
@@ -394,6 +395,7 @@ function bookActions($book,$class='') {
 	$div.= '</div>';
 	return $div;
 }
+
 function multipleBooks_info($book) {
 	$div = '<div class="info">';
 		$div.= '<div class="addrow" title="автор"><div class="labelIcon labelauthor"></div><div class="data">' .$book['author'].'</div></div>';
@@ -439,6 +441,7 @@ function multipleAuthors($q_result) {
 	$res.= '</div>';
 	return $res;
 }
+
 function singleBookTable($data) {
 	$count = $data['count'];
 	if ($data['lended']) {
@@ -451,7 +454,7 @@ function singleBookTable($data) {
 	$table .= $data['permaID'] ? '&nbsp;<a href="'.\SERVICES_PERMALINK[$data['service']].$data['permaID'].'" target="blank"><img class="ext" src="/Images/icons/ext.png"></a>' : '';
 	$table .='</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Автор</div><div class="dataDiv">'.$data['author'].'</div></div>';
-	$table .= '<div class="row"><div class="infoLabel">Местоположение</div><div class="dataDiv flex">'.$data['locName'].'<div id="moveButton" class="moveButton"><input value="'.$data['bookID'].'"></div></div></div>';
+	$table .= '<div class="row"><div class="infoLabel">Местоположение</div><div class="dataDiv flex"><input id="locID" value="'.$data['locID'].'" hidden><div id="moveButton" class="moveButton"><input value="'.$data['bookID'].'"></div></div></div>';
 	$data['year'] and $table .= '<div class="row"><div class="infoLabel">Година</div><div class="dataDiv">'.$data['year'].'</div></div>';
 	$table .= '<div class="row"><div class="infoLabel">Език</div><div class="dataDiv">'.$data['langName'].'</div></div>';
 	$table .= $data['ISBN'] ? '<div class="row"><div class="infoLabel">ISBN</div><div class="dataDiv">'.$data['ISBN'].'</div></div>' : '';

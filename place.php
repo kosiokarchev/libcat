@@ -46,7 +46,7 @@ $num = $res->num_rows;
         <noscript>Please enable Javascript.</noscript>
         <div id="json_books" hidden><?php echo json_encode($res->fetch_all(),JSON_HEX_AMP); ?></div>
         <?php require('snippets/header.php'); ?>
-    <form id="locForm" method="post" action="place.php" onsubmit="loadSubmit(this); return false;">
+    <form id="locForm" method="post" action="place.php" onsubmit="loadSubmit(this); return false;" style="margin: 0;">
         <input name="exec" value="1" hidden>
         <input name="bookIDs[]" hidden>
         <div id="locFormDiv" class="headerExtension flex">

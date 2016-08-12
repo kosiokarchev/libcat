@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Location thumbnail</title>
+        <script type="text/javascript" src="scripts/locs.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                var locID = parseInt(document.URL.split("#")[1]);
+                var thumb = buildThumbnail(locID);
+                if (thumb) {
+                    thumb.style.fontSize = "3px";
+                    thumb.style.overflow = "scroll";
+                    thumb.style.backgroundColor = "cornflowerblue";
+                    document.getElementsByTagName("body")[0].appendChild(thumb);
+                } else {alert("Location not found.");}
+            }
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body style="display: flex; justify-content: center; align-items: center; margin: 0;"></body>
+</html>

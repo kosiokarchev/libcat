@@ -1,13 +1,22 @@
+var lastUpdate = 1471002010778;
 var locdivs;
-window.addEventListener("load",function () {
-    locdivs = JSON.parse(syncGet("snippets/locs.php"));
-    var moveButton = document.getElementById("moveButton");
-    if (moveButton) {
-        moveButton.onclick = function() {
-            moveOne(this.firstElementChild.value);
-        }
+if (typeof(Storage)=="undefined") {
+    locdivs = JSON.parse(loadLocs());
+    console.log("Getting locs");
+} else {
+    if (!window.localStorage.locLoadDate || parseInt(window.localStorage.locLoadDate) < lastUpdate) {
+        window.localStorage.locdivs = loadLocs();
+        window.localStorage.locLoadDate = (new Date()).getTime();
     }
-},false);
+    locdivs = JSON.parse(window.localStorage.locdivs);
+}
+
+function loadLocs() {
+    var http = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
+    http.open("GET","snippets/locs.php",false);
+    http.send(null);
+    return http.responseText;
+}
 
 function moveOne(ID) {
     var moveForm = document.createElement("FORM");
@@ -65,7 +74,7 @@ function buildPlace(locdivID, radio, thumbnail) {
         locID.style.display = "none";
 
         loc.appendChild(locID);
-        loc.appendChild(document.createTextNode(locpars[0]));
+        // loc.appendChild(document.createTextNode(locpars[0]));
 
         if (!thumbnail) {
             loc.onclick = function() {

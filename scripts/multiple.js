@@ -15,6 +15,7 @@ function genBook(data,check,action) {
     var author = data[4];
     var year = data[5];
     var lang = data[14];
+    var locID = data[6];
     var loc = data[7];
     var ISBN = data[1];
     var count = data[11]=="0" ? data[8] : data[8]+" - "+data[11]+" = "+(parseInt(data[8])-parseInt(data[11]));
@@ -40,13 +41,33 @@ function genBook(data,check,action) {
                 info.appendChild(row("автор","author",author));
                 if (year) info.appendChild(row("година","year",year));
                 info.appendChild(row("език","lang",lang));
+            if (locID==1) {
                 info.appendChild(row("местоположение","loc",loc));
+            } else {
+                    var locCont = divWithClass("locCont");
+                        var locA = document.createElement("A"); locA.innerHTML = loc;
+                            locA.href = "thumbnail.html#"+locID; locA.target = "_blank";
+                        locCont.appendChild(locA);
+                        var thumb = buildThumbnail(locID);
+                    if (thumb) {
+                        var width = parseInt(thumb.style.width.split("em")[0]);
+                        var height = parseInt(thumb.style.height.split("em")[0]);
+                        var dim = height>width ? height : width;
+                        thumb.style.fontSize = (2/dim) + "in";
+                        thumb.style.backgroundColor = "cornflowerblue";
+
+                        var thumbDiv = divWithClass("thumb");
+                            var thumbCont = divWithClass("thumbCont"); thumbCont.appendChild(thumb);
+                            thumbDiv.appendChild(thumbCont);
+                        locCont.appendChild(thumbDiv);
+                    }
+                info.appendChild(row("", "loc", locCont));
+            }
                 if (ISBN) info.appendChild(row("ISBN","ISBN",ISBN));
                 info.appendChild(row("екземпляри","copies",count));
                 if (comment) info.appendChild(row("коментар","comment",comment));
             additionalDiv.appendChild(info);
         if (action) {
-            info.style.marginBottom = "0.5in";
             additionalDiv.appendChild(genBookActions(bookID,parseInt(data[8]),parseInt(data[11]),data[12]));
 
         }
@@ -72,7 +93,9 @@ function genBook(data,check,action) {
             if (window.innerHeight - bookDiv.getBoundingClientRect().bottom < 0) {bookDiv.scrollIntoView(false);}
         }
     };
-    return bookDiv;
+    var rowCont = document.createElement("DIV"); rowCont.style.position = "relative";
+    rowCont.appendChild(bookDiv);
+    return rowCont;
 }
 function row(title, label, data) {
     data = typeof(data)=="object" ? data : document.createTextNode(data);
