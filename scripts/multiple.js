@@ -1,7 +1,7 @@
 function genBooks(check,action) {
     var booksDiv = document.createElement("DIV");
-    if (document.getElementById("json_books").innerHTML) {
-        var books = JSON.parse(document.getElementById("json_books").innerHTML);
+    if (document.getElementById("json_books").textContent) {
+        var books = JSON.parse(document.getElementById("json_books").textContent);
         for (var i=0; i<books.length; i++) {
             booksDiv.appendChild(genBook(books[i],check,action));
         }
@@ -23,7 +23,7 @@ function genBook(data,check,action) {
     var bookDiv = divWithClass("book row"); bookDiv.id = "book_"+bookID;
         var titleDiv = divWithClass("title"); titleDiv.setAttribute("title",title);
             var titleContainer = divWithClass("titleContainer");
-            titleContainer.appendChild(document.createTextNode(title));
+            titleContainer.innerHTML = title;
         if (check) {
             var checkContainer = divWithClass("checkContainer flex");
                 var checkbox = document.createElement("INPUT");
@@ -74,7 +74,7 @@ function genBook(data,check,action) {
         bookDiv.appendChild(additionalDiv);
 
 
-    if (getCookie(bookDiv.id)) {
+    if (typeof(Storage)!=="undefined" && window.sessionStorage.getItem(bookDiv.id)) {
         titleContainer.style.whiteSpace = "normal";
         titleContainer.style.height = "auto";
         additionalDiv.style.height = "auto";
@@ -84,12 +84,12 @@ function genBook(data,check,action) {
             titleContainer.style.whiteSpace = "nowrap";
             titleContainer.style.height = "1.2em";
             additionalDiv.style.height = 0;
-            setCookie(bookDiv.id,false);
+            if (typeof(Storage)!=="undefined") {window.sessionStorage.removeItem(bookDiv.id);}
         } else {
             titleContainer.style.whiteSpace = "normal";
             titleContainer.style.height = "auto";
             additionalDiv.style.height = "auto";
-            setCookie(bookDiv.id,true);
+            if (typeof(Storage)!=="undefined") {window.sessionStorage.setItem(bookDiv.id,1);}
             if (window.innerHeight - bookDiv.getBoundingClientRect().bottom < 0) {bookDiv.scrollIntoView(false);}
         }
     };
@@ -98,7 +98,11 @@ function genBook(data,check,action) {
     return rowCont;
 }
 function row(title, label, data) {
-    data = typeof(data)=="object" ? data : document.createTextNode(data);
+    if (typeof(data)!="object") {
+        var dummy = document.createElement("DIV");
+        dummy.innerHTML = data;
+        data = document.createTextNode(dummy.textContent);
+    }
     var row = divWithClass("addrow"); row.setAttribute("title",title);
         var labelDiv = divWithClass("labelIcon label"+label); row.appendChild(labelDiv);
         var dataDiv = divWithClass("data"); dataDiv.appendChild(data); row.appendChild(dataDiv);
@@ -131,8 +135,8 @@ function genBookActions(ID,count,lended,comment,c) {
 
 function genAuthors() {
     var authorsDiv = document.createElement("DIV");
-    if (document.getElementById("json_authors").innerHTML) {
-        var authors = JSON.parse(document.getElementById("json_authors").innerHTML);
+    if (document.getElementById("json_authors").textContent) {
+        var authors = JSON.parse(document.getElementById("json_authors").textContent);
         for (var i=0; i<authors.length; i++) {
             authorsDiv.appendChild(genAuthor(authors[i]));
         }
@@ -147,7 +151,7 @@ function genAuthor(data) {
     a.target = "_blank";
     var title = document.createElement("DIV");
     title.className = "title";
-    title.appendChild(document.createTextNode(data[1]+" "));
+    title.innerHTML = data[1]+" ";
     title.appendChild(newExt());
     a.appendChild(title);
     div.appendChild(a);
