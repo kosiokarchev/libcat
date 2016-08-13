@@ -2,9 +2,8 @@ window.addEventListener("load", function () {
     var locID = document.getElementById("locID");
     var choiceCount = document.getElementById("choiceCount");
     var bookChoice = document.getElementById("bookChoice");
-    var refine = document.getElementById("refine");
     var bookSugg = genBooks(true); bookSugg.className = "sugg";
-    refine.parentNode.parentNode.parentNode.appendChild(bookSugg);
+    document.getElementById("contentDiv").appendChild(bookSugg);
 
     var button;
     var bookDivs = document.getElementsByClassName("book");
@@ -44,6 +43,8 @@ window.addEventListener("load", function () {
         }
     };
 
+
+    var refine = document.getElementById("refine");
     refine.onkeyup = function () {
         var books = bookSugg.childNodes;
         if (this.value.length < 3) {
@@ -56,9 +57,4 @@ window.addEventListener("load", function () {
         }
         refine.parentNode.parentNode.scrollIntoView();
     };
-    window.addEventListener("scroll",function () {
-        if (window.innerWidth > 960 && refine.parentNode.parentNode.style.position == "fixed") {
-            refine.parentNode.parentNode.style.left = (0.5*(window.innerWidth-960))+"px";
-        } else {refine.parentNode.parentNode.style.left = "0";}
-    },false);
 }, false);

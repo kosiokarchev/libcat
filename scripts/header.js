@@ -34,18 +34,21 @@ window.addEventListener("load", function () {
     window.addEventListener("scroll",function () {
         for (var i=0; i<fixed.length; i++) {
             if (fixed[i].offsetParent !== null || fixed[i].style.position=="fixed") {
+                if (typeof(fixed[i].stylewidth)=="undefined") {fixed[i].stylewidth = fixed[i].style.width;}
                 var top;
                 if (fixed[i].dummy.offsetParent === null) {top = fixed[i].getBoundingClientRect().top;}
                 else {top = fixed[i].dummy.getBoundingClientRect().top;}
-                console.log(top);
                 if (top<0) {
-                    fixed[i].style.position = "fixed"; fixed[i].style.top = "0";
                     fixed[i].dummy.style.display = "block";
                     fixed[i].dummy.style.width = fixed[i].offsetWidth+"px";
                     fixed[i].dummy.style.height = fixed[i].offsetHeight+"px";
+                    fixed[i].style.top = "0"; fixed[i].style.left = fixed[i].getBoundingClientRect().left+"px";
+                    fixed[i].style.width = fixed[i].offsetWidth+"px";
+                    fixed[i].style.position = "fixed";
                 }
                 else {
                     fixed[i].style.position = "static"; fixed[i].dummy.style.display = "none";
+                    fixed[i].style.width = fixed[i].stylewidth || "";
                 }
             }
         }
