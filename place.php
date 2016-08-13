@@ -64,7 +64,7 @@ $num = $res->num_rows;
         <div id="contentDiv">
             <p><?php echo $num; ?> неподредени книги</p>
             <div id="bookChoice" class="choice"></div>
-            <div class="row title refineContainer fixed" style="left: 0;">
+            <div class="row title refineContainer fixed">
                 <div class="withIcon">
                     <input type="text" onclick="this.select()" id="refine">
                     <div class="icon mag_glass">&#128269;</div>
