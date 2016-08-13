@@ -57,4 +57,9 @@ window.addEventListener("load", function () {
         }
         refine.parentNode.parentNode.scrollIntoView();
     };
+    window.addEventListener("scroll",function () {
+        if (window.innerWidth > 960 && refine.parentNode.parentNode.style.position == "fixed") {
+            refine.parentNode.parentNode.style.left = (0.5*(window.innerWidth - 960))+"px";
+        } else {refine.parentNode.parentNode.style.left = "0";}
+    },false);
 }, false);

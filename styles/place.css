@@ -11,7 +11,7 @@
     padding: 0 0.047in 0.086in 0;
 }
 
-.title {position: relative; width: 100%; max-width: 10in; text-align: left;}
+.title {position: relative; width: 100%; max-width: 10in;  text-align: left;}
 .title .titleContainer {  padding-right: 3em;  }
 .title .moveButton {  position: absolute; top: 0.1in; right: 0.1in;  }
 .title input[type=text] {width: 100%;}
