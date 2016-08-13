@@ -23,7 +23,33 @@ window.addEventListener("load", function () {
         if (searchDiv.hid && menuDiv.hid) {headerDiv.style.height = "50px";}
     }
 
+
     initCam();
+
+    var fixed = document.getElementsByClassName("fixed");
+    for (var i=0; i<fixed.length; i++) {
+        fixed[i].dummy = document.createElement(fixed[i].nodeName); fixed[i].dummy.style.display = "none";
+        fixed[i].parentNode.insertBefore(fixed[i].dummy,fixed[i]);
+    }
+    window.addEventListener("scroll",function () {
+        for (var i=0; i<fixed.length; i++) {
+            if (fixed[i].offsetParent !== null || fixed[i].style.position=="fixed") {
+                var top;
+                if (fixed[i].dummy.offsetParent === null) {top = fixed[i].getBoundingClientRect().top;}
+                else {top = fixed[i].dummy.getBoundingClientRect().top;}
+                console.log(top);
+                if (top<0) {
+                    fixed[i].style.position = "fixed"; fixed[i].style.top = "0";
+                    fixed[i].dummy.style.display = "block";
+                    fixed[i].dummy.style.width = fixed[i].offsetWidth+"px";
+                    fixed[i].dummy.style.height = fixed[i].offsetHeight+"px";
+                }
+                else {
+                    fixed[i].style.position = "static"; fixed[i].dummy.style.display = "none";
+                }
+            }
+        }
+    },false);
 }, false);
 
 function initCam() {
@@ -151,14 +177,14 @@ function divWithClass(c) {
     return div;
 }
 
-function setCookie(name,val) {
-    if (val) {document.cookie = name+"="+val;}
-    else {document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC"}
-}
-function getCookie(name) {
-    var cookies = document.cookie.split(";");
-    for (var i=0; i<cookies.length; i++) {
-        var index = cookies[i].indexOf(name+"=");
-        if (index >- 1) {return cookies[i].substr(index+name.length+1);}
-    }
-}
+// function setCookie(name,val) {
+//     if (val) {document.cookie = name+"="+val;}
+//     else {document.cookie = name+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC"}
+// }
+// function getCookie(name) {
+//     var cookies = document.cookie.split(";");
+//     for (var i=0; i<cookies.length; i++) {
+//         var index = cookies[i].indexOf(name+"=");
+//         if (index >- 1) {return cookies[i].substr(index+name.length+1);}
+//     }
+// }

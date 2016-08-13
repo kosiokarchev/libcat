@@ -41,7 +41,7 @@ function moveOne(ID) {
 }
 
 function buildPlace(locdivID, radio, thumbnail) {
-    var pars = locdivs[locdivID];
+    var pars = locdivs[locdivID]; if (!pars) {return false;}
     var locdiv = document.createElement("DIV");
     locdiv.style.position = "relative";
     locdiv.style.boxSizing = "content-box";
@@ -88,7 +88,7 @@ function buildPlace(locdivID, radio, thumbnail) {
         }
         locdiv.appendChild(loc);
     }
-
+    // locdiv.style.fontSize = "1px";
     return locdiv;
 }
 

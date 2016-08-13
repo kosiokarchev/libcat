@@ -34,7 +34,7 @@ window.addEventListener("load", function () {
             var height = parseInt(thumbnail.style.height.split("em")[0]);
             var dim = height>width ? height : width;
             thumbnail.style.fontSize = (23/(24*dim)) + "in";
-            this.nextElementSibling.appendChild(thumbnail,0.5);
+            this.nextElementSibling.appendChild(thumbnail);
         }
         else {
             var mess = document.createElement("DIV");
@@ -56,15 +56,4 @@ window.addEventListener("load", function () {
         }
         refine.parentNode.parentNode.scrollIntoView();
     };
-    function searchOnTop() {
-        var refinePos = bookChoice.getBoundingClientRect();
-        refinePos = refinePos.top + refinePos.height;
-        if (refinePos < 0) {
-            refine.parentNode.parentNode.style.position = "fixed";
-            refine.parentNode.parentNode.style.top = "0";
-            refine.parentNode.parentNode.style.left = document.getElementsByTagName("body")[0].getBoundingClientRect().left+"px";
-        } else {refine.parentNode.parentNode.style.position = "initial";}
-    }
-    window.onscroll = searchOnTop;
-    searchOnTop();
 }, false);
