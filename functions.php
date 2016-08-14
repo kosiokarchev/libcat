@@ -110,7 +110,7 @@ function fixISBN($ISBN) {
 	else {return false;}
 }
 function matchISBN($ISBN) {return preg_match('/\d{9}[\dXx]|\d{13}/',$ISBN);}
-function cleanISBN($ISBN) {return strtoupper(preg_replace('/[Xx](.)/','$1',preg_replace('/[^\dX]/','',$ISBN)));}
+function cleanISBN($ISBN) {return strtoupper(preg_replace('/[Xx](.)/','$1',preg_replace('/[^\dXx]/','',$ISBN)));}
 function dashISBN_specs($ISBN,$start,$i) {
 	$specs = array();
 	for ($j=1; $j<9-$i; $j++) {
