@@ -8,6 +8,10 @@ const cyrCyrThresh = 90;
 // General
 //   Shorthands
 function checkPostFor($keys) {foreach($keys as $key) {if (!isset($_POST[$key])) {return false;}} return true;}
+function getFromArray($arr,$keys) {
+	foreach ($keys as $key) {if (isset($arr[$key])) return $arr[$key];}
+	return null;
+}
 function nCopiesOf($n,$of) {return $n.' cop'.($n>1 ? 'ies' : 'y').' of "'.$of.'"';}
 
 //   HTTP
