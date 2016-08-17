@@ -25,7 +25,7 @@ if (!isset($locdivs)) {
         padding-top: 50px;
         margin-top: 10px;
         overflow: hidden;
-        border-top-left-radius: 25px; border-top-right-radius: 25px;;
+        border-top-left-radius: 25px; border-top-right-radius: 25px;
         box-shadow: 0 0 10px 0 black;
     }
     #locChoiceHeader {
