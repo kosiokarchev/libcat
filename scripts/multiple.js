@@ -1,12 +1,11 @@
-function genBooks(check,action) {
+function genBooks(books,check,action) {
+    if (!books) {return false;}
+    books = JSON.parse(books);
     var booksDiv = document.createElement("DIV");
-    if (document.getElementById("json_books").textContent) {
-        var books = JSON.parse(document.getElementById("json_books").textContent);
-        for (var i=0; i<books.length; i++) {
-            booksDiv.appendChild(genBook(books[i],check,action));
-        }
-        return booksDiv;
-    } else {return false;}
+    for (var i=0; i<books.length; i++) {
+        booksDiv.appendChild(genBook(books[i],check,action));
+    }
+    return booksDiv;
 }
 
 function genBook(data,check,action) {
@@ -139,15 +138,14 @@ function genBookActions(ID,count,lended,comment,c) {
     return actions;
 }
 
-function genAuthors() {
+function genAuthors(authors) {
+    if (!authors) {return false;}
+    authors = JSON.parse(authors);
     var authorsDiv = document.createElement("DIV");
-    if (document.getElementById("json_authors").textContent) {
-        var authors = JSON.parse(document.getElementById("json_authors").textContent);
-        for (var i=0; i<authors.length; i++) {
-            authorsDiv.appendChild(genAuthor(authors[i]));
-        }
-        return authorsDiv;
-    } else {return false;}
+    for (var i=0; i<authors.length; i++) {
+        authorsDiv.appendChild(genAuthor(authors[i]));
+    }
+    return authorsDiv;
 }
 function genAuthor(data) {
     var div = document.createElement("DIV");
