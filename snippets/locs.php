@@ -1,5 +1,5 @@
 <?php
-require('../connect.php');
+require_once('../connect.php');
 
 $res = sendQuery('SELECT locdivID,width,height,border FROM locdivs WHERE locdivID>1');
 $locdivs = array();

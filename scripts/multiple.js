@@ -23,10 +23,11 @@ function genBook(data,check,action) {
     var bookDiv = divWithClass("book row"); bookDiv.id = "book_"+bookID;
         var titleDiv = divWithClass("title"); titleDiv.setAttribute("title",title);
             var titleContainer = divWithClass("titleContainer");
-                titleContainer.innerHTML = title;
-                titleContainer.appendChild(document.createElement("BR"));
+                titleContainer.innerHTML = title+" ";
+                // titleContainer.appendChild(document.createElement("BR"));
                 var link = document.createElement("A"); link.href = "book.php?ID="+bookID; link.target = "_blank";
-                    link.innerHTML = "виж още";
+                    link.appendChild(newExt());
+                    // link.innerHTML = "виж още";
                 link.onclick = function(event) {event.stopPropagation(); return true;};
                 titleContainer.appendChild(link);
         if (check) {

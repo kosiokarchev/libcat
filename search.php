@@ -1,6 +1,6 @@
 <?php
-require('functions.php');
-require('connect.php');
+require_once('functions.php');
+require_once('connect.php');
 
 $postKeys = array('exec','input');
 if (checkPostFor($postKeys) and $_POST['exec']==1) {

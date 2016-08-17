@@ -1,6 +1,6 @@
 <?php
-require('functions.php');
-require('connect.php');
+require_once('functions.php');
+require_once('connect.php');
 
 if (isset($_POST['exec']) and $_POST['exec']==1) {
     $postKeys = array('locID','bookIDs');

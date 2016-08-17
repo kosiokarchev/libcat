@@ -13,7 +13,7 @@ $pass = 'Kosio1234';
 $db = 'libCat';
 $host = 'localhost';
 
-$con = mysqli_connect($host,$user,$pass,$db);
+$GLOBALS['con'] = mysqli_connect($host,$user,$pass,$db);
 
 if (mysqli_connect_errno()) {
 	echo "<h1>Connection to the database failed (for some inexplicable reason)</h1><p>Please <u style='cursor:hand' onclick='window.location.reload()'>try again.</u> or contact the network administrator.</p>";
