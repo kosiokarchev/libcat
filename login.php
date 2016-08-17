@@ -5,7 +5,7 @@ function go() {
     $_SESSION['login'] = true;
 
     $file = ($_SERVER['SCRIPT_NAME']=='/' or $_SERVER['SCRIPT_NAME']=='/login.php') ? 'index.php' : '.'.$_SERVER['SCRIPT_NAME'];
-    $v = include($file);
+    @$v = include($file);
     if($v===false) {
         header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found');
         echo '<h1>404: Page Not Found</h1>';
