@@ -15,8 +15,8 @@
     font-size: 16pt;
     text-align: center;
     background-color: #e2e2e9;
-    cursor: context-menu;
 }
+.row:not(.author) .title {cursor: context-menu;}
 .title .titleContainer {
     box-sizing: content-box;
     height: 1.2em;

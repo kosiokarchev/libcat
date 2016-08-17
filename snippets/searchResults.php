@@ -1,13 +1,16 @@
 <script>
+    var json_books = '<?php if (isset($books)) echo json_encode($books,JSON_HEX_APOS); ?>';
+    var json_authors = '<?php if (isset($authors)) echo json_encode($authors,JSON_HEX_APOS); ?>';
+    
     window.addEventListener("load",function() {
-        var books = genBooks(false,true);
+        var books = genBooks(json_books,false,true);
         if (books) {
             var booksHeading = document.createElement("H1"); booksHeading.innerHTML = "Книги";
             document.getElementById("contentDiv").appendChild(booksHeading);
             document.getElementById("contentDiv").appendChild(books);
         }
 
-        var authors = genAuthors();
+        var authors = genAuthors(json_authors);
         if (authors) {
             authors.className="floating";
             var authorsHeading = document.createElement("H1"); authorsHeading.innerHTML = "Автори";
@@ -16,7 +19,5 @@
         }
     },false);
 </script>
-<div id="json_books" hidden><?php if (isset($books)) echo htmlentities(json_encode($books)); ?></div>
-<div id="json_authors" hidden><?php if (isset($authors)) echo htmlentities(json_encode($authors)); ?></div>
 <div id="contentDiv">
 </div>

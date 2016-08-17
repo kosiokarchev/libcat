@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
     var locID = document.getElementById("locID");
     var choiceCount = document.getElementById("choiceCount");
     var bookChoice = document.getElementById("bookChoice");
-    var bookSugg = genBooks(true); bookSugg.className = "sugg";
+    var bookSugg = genBooks(json_books,true); bookSugg.className = "sugg";
     document.getElementById("contentDiv").appendChild(bookSugg);
 
     var button;

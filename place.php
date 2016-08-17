@@ -36,6 +36,9 @@ $num = $res->num_rows;
         <script type="text/javascript" src="scripts/multiple.js"></script>
         <script type="text/javascript" src="scripts/locs.js"></script>
         <script type="text/javascript" src="scripts/place.js"></script>
+        <script type="text/javascript">
+            var json_books = '<?php echo json_encode($res->fetch_all(),JSON_HEX_APOS); ?>';
+        </script>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="styles/header.css">
@@ -44,7 +47,6 @@ $num = $res->num_rows;
     </head>
     <body>
         <noscript>Please enable Javascript.</noscript>
-        <div id="json_books" hidden><?php echo json_encode($res->fetch_all(),JSON_HEX_AMP); ?></div>
         <?php require('snippets/header.php'); ?>
     <form id="locForm" method="post" action="place.php" onsubmit="loadSubmit(this); return false;" style="margin: 0;">
         <input name="exec" value="1" hidden>
