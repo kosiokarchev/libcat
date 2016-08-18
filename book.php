@@ -2,15 +2,14 @@
 require_once('functions.php');
 require_once('connect.php');
 
-$body = '';
+$GLOBALS['body'] = '';
 
 function displayBook($ID) {
     $q_result = sendQuery('SELECT * FROM bookdata WHERE bookID='.$ID);
     if (!$q_result) {return false;}
     $data = $q_result->fetch_assoc();
 
-    global $body;
-    $body .= bookActions($data,'headerExtension').'<div id="contentDiv">'.singleBookTable($data).'</div>';
+    $GLOBALS['body'] .= bookActions($data,'headerExtension').'<div id="contentDiv">'.singleBookTable($data).'</div>';
     return true;
 }
 
@@ -72,7 +71,7 @@ if (checkPostFor($postKeys) and $_POST['exec']==1) {
 <body>
     <?php require('snippets/header.php'); ?>
     <noscript>Please enable Javascript.</noscript>
-    <?php echo $body.'</div></div>';
+    <?php echo $GLOBALS['body'].'</div></div>';
           require('snippets/locChoice.php');
     ?>
 </body>
