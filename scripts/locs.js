@@ -8,12 +8,13 @@ if (typeof(Storage)=="undefined") {
         window.localStorage.locdivs = loadLocs();
         window.localStorage.locLoadDate = (new Date()).getTime();
     }
+    alert(window.localStorage.locdivs);
     locdivs = JSON.parse(window.localStorage.locdivs);
 }
 
 function loadLocs() {
     var http = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
-    http.open("GET","snippets/locs.php",false);
+    http.open("GET","/locs.php",false);
     http.send(null);
     return http.responseText;
 }
@@ -103,13 +104,11 @@ function buildThumbnail(id) {
 
 function locdivById(id) {
     if (id==1) {return false;}
-    var thisLocdivID = false;
     for (var locdivID in locdivs) {
         var subdivs = locdivs[locdivID][3];
         for (var i=0; i<subdivs.length; i++) {
-            if (subdivs[i][0]==id) {thisLocdivID=locdivID; break;}
+            if (subdivs[i][0]==id) {return [locdivID,i];}
         }
-        if (thisLocdivID) {break;}
     }
-    return [thisLocdivID,i];
+    return false;
 }
