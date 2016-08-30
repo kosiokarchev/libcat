@@ -8,7 +8,6 @@ if (typeof(Storage)=="undefined") {
         window.localStorage.locdivs = loadLocs();
         window.localStorage.locLoadDate = (new Date()).getTime();
     }
-    alert(window.localStorage.locdivs);
     locdivs = JSON.parse(window.localStorage.locdivs);
 }
 
