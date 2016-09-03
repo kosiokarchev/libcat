@@ -28,7 +28,7 @@ if (checkPostFor($postKeys)) {
 
 session_start();
 if (isset($_SESSION['login']) and $_SESSION['login']) {go();}
-if (false and $ip = getFromArray($_SERVER,array('HTTP_CLIENT_IP','HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED','HTTP_FORWARDED_FOR','HTTP_FORWARDED','REMOTE_ADDR'))) {
+if ($ip = getFromArray($_SERVER,array('HTTP_CLIENT_IP','HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED','HTTP_FORWARDED_FOR','HTTP_FORWARDED','REMOTE_ADDR'))) {
     require_once('connect.php'); $GLOBALS['con']->select_db('test_db');
     $res = sendQuery('SELECT CONCAT_WS(".",ip1,ip2,ip3,ip4) FROM ips ORDER BY ipID DESC LIMIT 1');
     $GLOBALS['con']->select_db('libcat');
