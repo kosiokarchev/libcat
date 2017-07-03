@@ -113,7 +113,7 @@ if (checkPostFor($postKeys) and $_POST['exec']==1) {
         $ISBN = cleanISBN($_POST['ISBN']);
         $sureISBN = isset($_POST['sureISBN']) and $_POST['sureISBN'];
         if (!($sureISBN or verifyISBN($ISBN))) {ajax_return(0,'"'.$ISBN.'" не е валиден ISBN код.');}
-        else if ($q_result = existsISBN($ISBN)) {ajax_return(0,'Книгата с ISBN '.$ISBN.' вече присъства в каталога.','book.php?type=ID&code='.$q_result->fetch_row()[0]);}
+        else if ($q_result = existsISBN($ISBN)) {ajax_return(0,'Книгата с ISBN '.$ISBN.' вече присъства в каталога.','book.php?ID='.$q_result->fetch_row()[0]);}
 
         if (!($locID = intval($_POST['locID']))) {$locID = 1;}
 

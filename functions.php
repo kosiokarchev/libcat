@@ -35,7 +35,7 @@ function loadDoc($url) {
 	if (@$doc->loadHTML($str)) {return $doc;}
 	else {throw new \DOMException('File could not be parsed: '.$url);}
 }
-function ajax_return($status=1,$msg='',$redir=null) {
+function ajax_return($status=1, $msg='', $redir=null) {
 	echo json_encode(array('status'=>$status,'msg'=>$msg,"redir"=>$redir));
 	exit();
 }
@@ -201,7 +201,7 @@ function buildWhere($words,$fields,$min=2) {
 	}
 	return $where;
 }
-function authSearch($input,$min=3) {
+function authSearch($input, $min=3) {
 	if (gettype($input)=='string') {
 		$input = preg_replace('/\s+/', ' ', str_replace([',', ';'], ' ', str_replace('\\', '', trim(htmlspecialchars($input)))));
 		if (strlen(utf8_decode($input)) < $min) {return false;}
@@ -217,7 +217,7 @@ function authSearch($input,$min=3) {
 	$q_result = sendQuery($query);
 	return $q_result;
 }
-function search($words,$table,$fields,$ret=false) {
+function search($words, $table, $fields, $ret=false) {
 	if ($table=='authors') {
 		$weight1 = substr(searchWeight($words,[$fields[0],$fields[1]]),0,-10);
 		$weight2 = substr(searchWeight($words,[$fields[2],$fields[3]]),0,-10);

@@ -51,7 +51,10 @@ function respond(http,onfail) {
                     alert("Failure: " + response.msg);
                 }
             } else if (response.status==1) {window.location.assign(response.redir);}
-            else {window.location.replace(response.redir);}
+            else {
+                if (response.msg) alert(response.msg);
+                window.location.replace(response.redir);
+            }
         }
         catch (e) {alert(http.responseText);}
     }
