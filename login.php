@@ -1,5 +1,5 @@
 <?php
-$pass = 'Kusko';
+$pass = 'your-pass';
 
 function go() {
     $_SESSION['login'] = true;
